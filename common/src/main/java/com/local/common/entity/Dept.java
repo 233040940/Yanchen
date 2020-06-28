@@ -16,7 +16,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Dept {
+public class Dept{
 
     @ExcelField(title="姓名",order=1)
     private String name;
@@ -40,6 +40,5 @@ public class Dept {
     @ExcelField(title = "b",order = 11)
     private float b;
 
-    @ExcelField(title ="l",order = 12)
     private Boolean c;
 }

@@ -1,17 +1,10 @@
 package com.local.common.utils;
 
 import com.local.common.annotation.ExcelField;
-import com.local.common.entity.Depart;
-import com.local.common.entity.Dept;
-import org.apache.commons.lang3.ClassUtils;
-import org.apache.commons.lang3.reflect.FieldUtils;
-import org.apache.commons.lang3.reflect.MethodUtils;
-import org.apache.commons.lang3.tuple.Pair;
 import org.apache.commons.lang3.tuple.Triple;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -50,72 +43,12 @@ public class ReflectionHelper {
         }).collect(Collectors.toList());
     }
 
+
     public static <T> List<Field> findFields(T t) {
 
         return Stream.of(t.getClass().getDeclaredFields()).collect(Collectors.toList());
     }
 
-    public static <T> Triple<Integer, Class<?>, Object> fieldValueTriple(T t, Field field) {
-
-        try {
-
-            field.setAccessible(true);
-
-            ExcelField excelField = field.getAnnotation(ExcelField.class);
-
-            int order=excelField.order();
-
-            Class<?> type = field.getType();       //属性类型
-
-            if(type != String.class && type != Object.class){
-
-                type= ClassUtils.primitiveToWrapper(type);   //将基本数据类型进行装箱
-            }
-
-            Object fieldValue = field.get(t);   //属性值
-
-            return Triple.of(order, type, fieldValue);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-            return null;
-        }
-
-    }
-
-
-    public static <T> Triple<Object,Integer,? extends Class> fieldValueOrderTypeTriple(T t, Field field) {
-
-        try {
-
-            field.setAccessible(true);
-
-            ExcelField annotation = field.getAnnotation(ExcelField.class);
-            int order = annotation.order();      //属性顺序
-
-            Object fieldValue = field.get(t);   //属性值
-            Class<?> type=field.getType();      //属性类型
-            return Triple.of(fieldValue,order,type);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    public static List<Triple<Field, Integer, ? extends Class<?>>> templateFieldOrderTypeTriples(List<Field> fields){
-
-        List<Triple<Field, Integer, ? extends Class<?>>> collect = fields.stream().map((f) -> {
-
-            ExcelField excelField = ReflectionHelper.findAnnotationOnField(f, ExcelField.class);
-
-            int order = excelField.order();    //属性顺序
-
-            Class<?> type = f.getType();       //属性类型
-
-            return Triple.of(f, order, type);
-        }).collect(Collectors.toList());
-
-        return collect;
-    }
 
 
     /**
@@ -127,6 +60,7 @@ public class ReflectionHelper {
 
     public static <A extends Annotation> A findAnnotationOnField(Field field, Class<A> annotationClass) {
 
+        field.setAccessible(true);
         return field.getAnnotation(annotationClass);
     }
 

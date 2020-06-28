@@ -20,15 +20,19 @@ import java.util.stream.Collectors;
  * @date 2020-05-28 20:37
  */
 
+@Component
 public class RedisTemplateHelper {
 
-    private RedisTemplate redisTemplate;
+    private final RedisTemplate redisTemplate;
 
+    private static final Map EMPTY_MAP=Collections.EMPTY_MAP;
 
-    @PostConstruct
-    public void initRedisTemplate() {
+    private static final Set EMPTY_SET=Collections.EMPTY_SET;
 
-        redisTemplate = ApplicationContextProvider.getBean("redisTemplate", RedisTemplate.class);
+    private static final List EMPTY_LIST=Collections.EMPTY_LIST;
+
+    public RedisTemplateHelper(RedisTemplate redisTemplate) {
+        this.redisTemplate = redisTemplate;
     }
 
     /**
@@ -337,7 +341,7 @@ public class RedisTemplateHelper {
      * @version 1.0
      */
 
-    public boolean hSet(String key, String hashKey, Object value) {
+    public boolean hashSet(String key, String hashKey, Object value) {
         try {
             redisTemplate.opsForHash().put(key, hashKey, value);
             return true;
@@ -357,7 +361,7 @@ public class RedisTemplateHelper {
      * @version 1.0
      */
 
-    public Map<String, Object> hBatchGetAll(String key) {
+    public Map<String, Object> hashBatchGetAll(String key) {
         return redisTemplate.opsForHash().entries(key);
 
     }
@@ -368,10 +372,10 @@ public class RedisTemplateHelper {
      * @Param [key, tClass]
      * @Author yc
      */
-    public <T> Map<String, T> hBatchGetAll(String key, Class<T> valueClass) {
+    public <T> Map<String, T> hashBatchGetAll(String key, Class<T> valueClass) {
         Map<String, Object> entries = redisTemplate.opsForHash().entries(key);
         if (CollectionUtils.isEmpty(entries)) {
-            return null;
+            return EMPTY_MAP;
         }
 
         Map<String, T> result = Maps.newHashMapWithExpectedSize(entries.size());
@@ -381,10 +385,10 @@ public class RedisTemplateHelper {
     }
 
 
-    public <T> List<T> hBatchGet(String key, Collection<String> hashKeys, Class<T> valueClass) {
+    public <T> List<T> hashBatchGet(String key, Collection<String> hashKeys, Class<T> valueClass) {
         List<Object> list = redisTemplate.opsForHash().multiGet(key, hashKeys);
         if (CollectionUtils.isEmpty(list)) {
-            return null;
+            return EMPTY_LIST;
         }
 
         List<T> collect = list.stream().filter((item) -> item != null && item.getClass() == valueClass).map((item) -> (T) item).collect(Collectors.toList());
@@ -400,7 +404,7 @@ public class RedisTemplateHelper {
      * @version 1.0
      */
 
-    public <T> T hget(String key, Object hashKey, Class<T> valueClass) {
+    public <T> T hashGet(String key, Object hashKey, Class<T> valueClass) {
         Object o = redisTemplate.opsForHash().get(key, hashKey);
         if (o.getClass() != valueClass) {
             return null;
@@ -409,7 +413,7 @@ public class RedisTemplateHelper {
 
     }
 
-    public Object hget(String key, String hashKey) {
+    public Object hashGet(String key, String hashKey) {
         return redisTemplate.opsForHash().get(key, hashKey);
     }
 
@@ -431,11 +435,11 @@ public class RedisTemplateHelper {
      * @Author yc
      */
 
-    public long hIncrementLong(String key, String hashKey, long delta) {
+    public long hashIncrementLong(String key, String hashKey, long delta) {
         return redisTemplate.opsForHash().increment(key, hashKey, delta);
     }
 
-    public double hIncrementDouble(String key, String hashKey, double delta) {
+    public double hashIncrementDouble(String key, String hashKey, double delta) {
         return redisTemplate.opsForHash().increment(key, hashKey, delta);
     }
 
@@ -443,7 +447,7 @@ public class RedisTemplateHelper {
         return redisTemplate.opsForHash().hasKey(key, hashKey);
     }
 
-    public <T> boolean hBatchSet(String key, Map<String, T> items) {
+    public <T> boolean hashBatchSet(String key, Map<String, T> items) {
         try {
             redisTemplate.opsForHash().putAll(key, items);
             return true;
@@ -454,7 +458,7 @@ public class RedisTemplateHelper {
     }
 
 
-    public boolean lSet(String key, long index, Object value) {
+    public boolean listSet(String key, long index, Object value) {
         try {
             redisTemplate.opsForList().set(key, index, value);
             return true;
@@ -464,7 +468,7 @@ public class RedisTemplateHelper {
         }
     }
 
-    public boolean lpush(String key, Object value) {
+    public boolean leftPush(String key, Object value) {
         try {
             redisTemplate.opsForList().leftPush(key, value);
             return true;
@@ -474,4 +478,101 @@ public class RedisTemplateHelper {
         }
     }
 
+    public boolean leftPushIfPresent(String key,Object value){
+
+       return redisTemplate.opsForList().leftPushIfPresent(key,value)==1?true:false;
+    }
+
+    public long leftPushAll(String key,Collection values) {
+
+      return   redisTemplate.opsForList().leftPushAll(key, values);
+    }
+
+    public boolean rightPush(String key,Object value){
+        try {
+            redisTemplate.opsForList().rightPush(key,value);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean rightPushIfPresent(String key,Object value){
+
+      return   redisTemplate.opsForList().rightPushIfPresent(key,value)==1?true:false;
+    }
+    public boolean rightPushAll(String key,Collection values){
+        try {
+            redisTemplate.opsForList().rightPushAll(key,values);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+    public Object leftPop(String key,long timeOut,TimeUnit timeUnit){
+        return redisTemplate.opsForList().leftPop(key,timeOut,timeUnit);
+    }
+
+    public Object leftPop(String key){
+        return redisTemplate.opsForList().leftPop(key);
+    }
+
+    public Object rightPop(String key){
+        return redisTemplate.opsForList().rightPop(key);
+    }
+
+    public boolean listDel(String key,long start,long end){
+
+        try {
+            redisTemplate.opsForList().trim(key,start,end);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public Object listGet(String key,long index){
+
+        return redisTemplate.opsForList().index(key,index);
+    }
+
+    public List listRange(String key,long start,long end){
+
+        return redisTemplate.opsForList().range(key, start, end);
+    }
+
+
+    public boolean listRemove(String key,long index,Object value){
+        return redisTemplate.opsForList().remove(key, index, value)==1?true:false;
+    }
+
+    public Long listSize(String key){
+
+        return  redisTemplate.opsForList().size(key);
+    }
+
+    public Object rightPopAndLeftPush(String oldListKey,String newListKey){
+
+        return  redisTemplate.opsForList().rightPopAndLeftPush(oldListKey,newListKey);
+    }
+
+    public Object rightPopAndLeftPush(String oldListKey,String newListKey,long blockTimeOut,TimeUnit timeUnit){
+
+        return  redisTemplate.opsForList().rightPopAndLeftPush(oldListKey,newListKey,blockTimeOut,timeUnit);
+    }
+
+    public <T> T rightPopAndLeftPush(String oldListKey,String newListKey,Class<T> tClass){
+
+        Object o = rightPopAndLeftPush(oldListKey, newListKey);
+
+        if(o.getClass()!=tClass){
+            return null;
+        }
+        return (T)o;
+    }
 }

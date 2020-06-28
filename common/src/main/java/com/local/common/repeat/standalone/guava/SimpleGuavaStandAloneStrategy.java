@@ -15,7 +15,6 @@ import java.util.concurrent.TimeUnit;
  */
 public class SimpleGuavaStandAloneStrategy extends StandAloneStrategy {
 
-
     private static  final Cache<String,String> GUAVA_CACHE;
 
     private static  final int initCapacity=16;

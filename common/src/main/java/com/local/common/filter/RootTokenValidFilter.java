@@ -100,9 +100,4 @@ public class RootTokenValidFilter implements Filter {
         outer.close();
     }
 
-    public static void main(String[] args) {
-
-        System.out.println("Unauthorized".toUpperCase());
-    }
-
 }

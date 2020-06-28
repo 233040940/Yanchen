@@ -3,6 +3,8 @@ package com.local.common.utils;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Component;
+
 import java.util.Map;
 
 /**
@@ -13,6 +15,7 @@ import java.util.Map;
  * @date 2020-05-26 17:35
  */
 
+@Component
 public class ApplicationContextProvider implements ApplicationContextAware {
 
 

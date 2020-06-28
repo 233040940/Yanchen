@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
  * @description TODO  redis操作工具类
  */
 
-public interface RedisProvider<K, V> {
+public interface RedisProvider<String, V> {
 
 
     /**
@@ -23,11 +23,11 @@ public interface RedisProvider<K, V> {
      * @Author yc
      */
 
-    boolean set(K key, V value);
+    boolean set(String key, V value);
 
-    boolean set(K key, V value, long timeOut);
+    boolean set(String key, V value, long timeOut);
 
-    boolean set(K key, V value, long timeOut, TimeUnit timeUnit);
+    boolean set(String key, V value, long timeOut, TimeUnit timeUnit);
 
     /**
      * @return boolean
@@ -36,11 +36,11 @@ public interface RedisProvider<K, V> {
      * @Author yc
      */
 
-    boolean setIfAbsent(K key, V value);
+    boolean setIfAbsent(String key, V value);
 
-    boolean setIfAbsent(K key, V value, long timeOut);
+    boolean setIfAbsent(String key, V value, long timeOut);
 
-    boolean setIfAbsent(K key, V value, long timeOut, TimeUnit timeUnit);
+    boolean setIfAbsent(String key, V value, long timeOut, TimeUnit timeUnit);
 
     /**
      * @return boolean
@@ -49,11 +49,11 @@ public interface RedisProvider<K, V> {
      * @Author yc
      */
 
-    boolean setIfPresent(K key, V value);
+    boolean setIfPresent(String key, V value);
 
-    boolean setIfPresent(K key, V value, long timeOut);
+    boolean setIfPresent(String key, V value, long timeOut);
 
-    boolean setIfPresent(K key, V value, long timeOut, TimeUnit timeUnit);
+    boolean setIfPresent(String key, V value, long timeOut, TimeUnit timeUnit);
 
     /**
      * @return boolean
@@ -62,7 +62,7 @@ public interface RedisProvider<K, V> {
      * @Author yc
      */
 
-    boolean batchSet(Map<K, V> map);
+    boolean batchSet(Map<String, V> map);
 
     /**
      * @return boolean
@@ -71,7 +71,7 @@ public interface RedisProvider<K, V> {
      * @Author yc
      */
 
-    boolean batchSetIfAbsent(Map<K, V> map);
+    boolean batchSetIfAbsent(Map<String, V> map);
 
     /**
      * @return T
@@ -80,7 +80,7 @@ public interface RedisProvider<K, V> {
      * @Author yc
      */
 
-    V get(K key);
+    V get(String key);
 
     /**
      * @return java.util.List<T>
@@ -89,7 +89,7 @@ public interface RedisProvider<K, V> {
      * @Author yc
      */
 
-   List<V> batchGet(Collection<K> keys);
+   List<V> batchGet(Collection<String> keys);
 
 
     /**
@@ -99,7 +99,7 @@ public interface RedisProvider<K, V> {
      * @Author yc
      */
 
-    boolean del(K key);
+    boolean del(String key);
 
     /**
      * @return boolean
@@ -108,7 +108,7 @@ public interface RedisProvider<K, V> {
      * @Author yc
      */
 
-    boolean batchDel(Collection<K> keys);
+    boolean batchDel(Collection<String> keys);
 
     /**
      * @return boolean
@@ -119,7 +119,7 @@ public interface RedisProvider<K, V> {
      * @version 1.0
      */
 
-    boolean exist(K key);
+    boolean exist(String key);
 
 
     /**
@@ -129,7 +129,7 @@ public interface RedisProvider<K, V> {
      * @Author yc
      */
 
-    boolean exist(Collection<K> keys);
+    boolean exist(Collection<String> keys);
 
 
     /**
@@ -139,7 +139,7 @@ public interface RedisProvider<K, V> {
      * @Author yc
      */
 
-    long countKeysExist(Collection<K> keys);
+    long countStringeysExist(Collection<String> keys);
 
 
     /**
@@ -149,7 +149,7 @@ public interface RedisProvider<K, V> {
      * @Author yc
      */
 
-    long valueLength(K key);
+    long valueLength(String key);
 
 
     /**
@@ -159,11 +159,11 @@ public interface RedisProvider<K, V> {
      * @Author yc
      */
 
-    long incrementLong(K key);
+    long incrementLong(String key);
 
-    long incrementLong(K key, long delta);
+    long incrementLong(String key, long delta);
 
-    double incrementDouble(K key, double delta);
+    double incrementDouble(String key, double delta);
 
 
     /**
@@ -173,7 +173,7 @@ public interface RedisProvider<K, V> {
      * @Author yc
      */
 
-    V getAndSet(K key, V value);
+    V getAndSet(String key, V value);
 
     /**
      * @return int 返回新的value 长度
@@ -182,34 +182,34 @@ public interface RedisProvider<K, V> {
      * @Author yc
      */
 
-    int append(K key, V value);
+    int append(String key, V value);
 
     /**
      * @return long
      * @Description 通过key 和给定的hashkey 删除value
-     * @Param [key, hashKeys]
+     * @Param [key, hashStringeys]
      * @Author yc
      */
 
-    long delete(K key, Object... hashKeys);
+    long delete(String key, String... hashKeys);
 
     /**
-     * @return java.util.Map<K   ,   V>
+     * @return java.util.Map<String   ,   V>
      * @Description 通过key检索hash value
      * @Param [key]
      * @Author yc
      */
 
-    Map<K, V> entries(K key);
+    Map<String, V> entries(String key);
 
 
-    V hGet(K key, Object hashKey);
+    V hGet(String key, String hashKey);
 
-    boolean hasKey(K key, Object hashKey);
+    boolean hasHashKey(String key, String hashKey);
 
-    long hIncrementLong(K key, Object hashKey, long delta);
+    long hashIncreLong(String key, String hashKey, long delta);
 
-    double hIncrementDouble(K key, Object hashKey, double delta);
+    double hashIncreDouble(String key, String hashKey, double delta);
 }
 
 

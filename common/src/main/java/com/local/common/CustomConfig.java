@@ -27,7 +27,7 @@ public class CustomConfig  {
 
         FilterRegistrationBean filterRegistrationBean=new FilterRegistrationBean();
 
-        ImmutableSet<UrlMatcher> excludeUrls=ImmutableSet.of(new UrlMatcher("/create", RequestMethod.GET));
+        ImmutableSet<UrlMatcher> excludeUrls=ImmutableSet.of(new UrlMatcher("/create", RequestMethod.GET),new UrlMatcher("/abc",RequestMethod.GET));
 
         filterRegistrationBean.setFilter(new RootTokenValidFilter(excludeUrls,null,new IncludeSubjectTokenValidator("yc")));
 

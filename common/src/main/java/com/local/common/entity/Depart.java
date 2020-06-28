@@ -1,7 +1,13 @@
 package com.local.common.entity;
 
+import com.local.common.annotation.ExcelField;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  * @author yc
@@ -12,9 +18,22 @@ import lombok.Getter;
  */
 @AllArgsConstructor
 @Getter
+@NoArgsConstructor
+@ToString
+
+@Entity
 public class Depart {
 
+
+    @Id
+    private long id;
+
+    @ExcelField(title = "名字")
     private String name;
 
+    @ExcelField(title = "金额",order = 2)
     private Integer amount;
+
+    @ExcelField(title = "年龄",order = 3)
+    private Integer age;
 }
