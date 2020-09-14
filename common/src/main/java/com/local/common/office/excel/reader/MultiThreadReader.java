@@ -2,7 +2,7 @@ package com.local.common.office.excel.reader;
 
 import com.google.common.collect.Lists;
 import com.google.common.util.concurrent.*;
-import com.local.common.enums.ReaderType;
+import com.local.common.enums.WorkerSource;
 import org.apache.commons.lang3.tuple.Triple;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.checkerframework.checker.nullness.qual.Nullable;
@@ -23,91 +23,103 @@ import java.util.concurrent.*;
  */
 public class MultiThreadReader {
 
-    private static final int MAX_THREAD_AMOUNT=10;    //最大线程数
+    private static final int MAX_THREAD_AMOUNT = 10;    //最大线程数
 
-    private static final Logger LOGGER= LoggerFactory.getLogger(MultiThreadReader.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MultiThreadReader.class);
 
-    private static final int MAX_READ_ROW=10000;        //单个线程最大读取行
+    private static final int MAX_READ_ROW = 10000;        //单个线程最大读取行
 
-    private static final ListeningExecutorService EXECUTOR_SERVICE= MoreExecutors.listeningDecorator(Executors.newFixedThreadPool(MAX_THREAD_AMOUNT));   //采用guava的线程池
+    private static final ListeningExecutorService EXECUTOR_SERVICE = MoreExecutors.listeningDecorator(Executors.newFixedThreadPool(MAX_THREAD_AMOUNT));   //采用guava的线程池
 
-    private ReaderType readerType;
+    private WorkerSource workerSource;
 
-    public MultiThreadReader(ReaderType readerType){
-        this.readerType=readerType;
+    public MultiThreadReader(WorkerSource workerSource) {
+        this.workerSource = workerSource;
     }
 
-   public Collection startRead(Sheet sheet, Class<?> excelTemplate, List<Triple<Field, Integer, ? extends Class<?>>> triples) throws ExecutionException, InterruptedException {
+    public Collection startRead(Sheet sheet, Class<?> excelTemplate, List<Triple<Field, Integer, ? extends Class<?>>> triples) throws ExecutionException, InterruptedException {
 
-       switch (readerType) {
-           case FORKJOIN:
-               return adaptForkJoinWorker(sheet, excelTemplate, triples);
-           default:
-               return adaptFutureWorker(sheet, excelTemplate, triples);
-       }
-   }
+        switch (workerSource) {
+            case FUTURE:
+                return adaptFutureWorkerRead(sheet, excelTemplate, triples);
+            default:
+                return adaptForkJoinWorkerRead(sheet, excelTemplate, triples);
+        }
+    }
 
-   //委托forkJoinWorker
-   private Collection adaptForkJoinWorker(Sheet sheet, Class<?> excelTemplate, List<Triple<Field, Integer, ? extends Class<?>>> triples) throws ExecutionException, InterruptedException {
+    //委托forkJoinWorker
+    private Collection adaptForkJoinWorkerRead(Sheet sheet, Class<?> excelTemplate, List<Triple<Field, Integer, ? extends Class<?>>> triples) throws ExecutionException, InterruptedException {
 
-       ForkJoinPool forkJoinPool = new ForkJoinPool();
+        ForkJoinPool forkJoinPool = new ForkJoinPool();
 
-       ForkJoinTask<Collection> result = forkJoinPool.submit(new ForkJoinReadWorker(1, sheet.getPhysicalNumberOfRows(), sheet, excelTemplate, triples));
+        final int defaultStart=1;
 
-       return result.get();
-   }
+        ForkJoinTask<Collection> result = forkJoinPool.submit(new ForkJoinReadWorker(defaultStart, sheet.getPhysicalNumberOfRows(), sheet, excelTemplate, triples));
 
-   //委托给futureWorker
-    private Collection adaptFutureWorker(Sheet sheet, Class<?> excelTemplate, List<Triple<Field, Integer, ? extends Class<?>>> triples) throws ExecutionException, InterruptedException {
+        return result.get();
+    }
 
-        final int lastRowNum=sheet.getLastRowNum();
+    //委托futureWorker
+    private Collection adaptFutureWorkerRead(Sheet sheet, Class<?> excelTemplate, List<Triple<Field, Integer, ? extends Class<?>>> triples) throws ExecutionException, InterruptedException {
 
-        int threadAmount=lastRowNum/MAX_READ_ROW;   //线程个数
+        final int lastRowNum = sheet.getLastRowNum();
 
-        if((threadAmount * MAX_READ_ROW) != lastRowNum){
+        int threadAmount = lastRowNum / MAX_READ_ROW;   //线程个数
+
+        if ((threadAmount * MAX_READ_ROW) != lastRowNum) {    //如果有余数则线程数+1
             threadAmount++;
         }
 
-        final CountDownLatch downLatch=new CountDownLatch(threadAmount);
+        final CountDownLatch downLatch = new CountDownLatch(threadAmount);
 
-        int start=1;
+        int start = 1;         //excel row 开始索引
 
-        int scale=lastRowNum % MAX_READ_ROW;     //取余
+        int scale = lastRowNum % MAX_READ_ROW;     //取余
 
-        int end;
+        int end;             //excel row 结束索引
 
-        List result= Lists.newArrayListWithCapacity(lastRowNum);
+        List result = Lists.newCopyOnWriteArrayList();   //采用并发安全的CopyOnWriteArrayList容器
 
-        for (int i = 0; i <threadAmount; i++) {
-
-            if(scale==0){
-                end=start + MAX_READ_ROW;
-            }else{
-                end=start + scale;
+        if (scale == 0) {           //刚好被整除
+            for (int i = 1; i <= threadAmount; i++) {
+                end = i * MAX_READ_ROW + 1;
+                this.futurePostRead(result, downLatch, start, end, sheet, excelTemplate, triples);
+                start = end;
             }
-
-            ListenableFuture<Collection> future = EXECUTOR_SERVICE.submit(new FutureReadWorker(start,end , sheet, excelTemplate, triples));
-
-            Futures.addCallback(future, new FutureCallback<Collection>() {
-                @Override
-                public void onSuccess(@Nullable Collection collection) {
-
-                    result.addAll(collection);
-                    downLatch.countDown();
+        } else {
+            for (int i = 1; i <= threadAmount; i++) {
+                if (i == threadAmount) {
+                    end = start + scale;
+                } else {
+                    end = i * MAX_READ_ROW + 1;
                 }
-
-                @Override
-                public void onFailure(Throwable throwable) {
-
-                    LOGGER.warn("读取出错",throwable);
-                    downLatch.countDown();
-                }
-            },MoreExecutors.directExecutor());
-
-            start=end;
+                this.futurePostRead(result, downLatch, start, end, sheet, excelTemplate, triples);
+                start = end;
+            }
         }
-
         downLatch.await();
         return result;
     }
+
+    private void futurePostRead(List result, CountDownLatch downLatch, int start, int end, Sheet sheet, Class<?> excelTemplate, List<Triple<Field, Integer, ? extends Class<?>>> triples) {
+
+        ListenableFuture<Collection> future = EXECUTOR_SERVICE.submit(new FutureReadWorker(start, end, sheet, excelTemplate, triples));
+
+        Futures.addCallback(future, new FutureCallback<Collection>() {
+            @Override
+            public void onSuccess(@Nullable Collection collection) {
+
+                result.addAll(collection);
+                downLatch.countDown();
+            }
+
+            @Override
+            public void onFailure(Throwable throwable) {
+
+                LOGGER.warn("读取出错", throwable); //TODO 补偿机制
+                downLatch.countDown();
+            }
+        }, MoreExecutors.directExecutor());
+    }
+
 }

@@ -1,19 +1,17 @@
 package com.local.common.enums;
 
 /**
- * @author ReaderType
- * @version 1.0
+ * @author WorkerSource
  * @project yanchen
- * @description TODO
  * @date 2020-06-25 19:41
  */
-public enum ReaderType {
+public enum WorkerSource {
 
     FORKJOIN("基于forkJoin框架进行多线程操作"),FUTURE("基于future进行多线程操作");
 
     private String description;
 
-    ReaderType(String description){
+    WorkerSource(String description){
         this.description=description;
     }
 }

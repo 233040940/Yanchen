@@ -6,7 +6,6 @@ import com.local.common.enums.ExcelSuffix;
 import com.local.common.enums.ExcelTemplateTitleOption;
 import com.local.common.exception.CustomException;
 import com.local.common.utils.CustomValidator;
-import com.local.common.utils.ReflectionHelper;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.commons.lang3.tuple.Triple;
@@ -56,20 +55,16 @@ public class SimplePoiHelper<T> extends PoiExcelHelper<T> {
     public Collection<T> read(String path, String excelName, String sheetName, Class<T> excelTemplate, ExcelSuffix excelSuffix) {
 
         List<Field> fields = filterTemplateFields(excelTemplate);
-
         if (CustomValidator.checkCollectionNotEmpty(fields)) {
 
             boolean effective = checkExcelTemplatePropertiesEffective(fields, excelSuffix, ExcelTemplateTitleOption.NOT_CARE);
 
             if (!effective) {
-
                 throw new CustomException("无效的excelTemplate");
             }
-
             FileInputStream inputStream = null;
             Workbook workBook = null;
             try {
-
                 inputStream = FileUtils.openInputStream(new File(path, excelName + excelSuffix.getSuffix()));
 
                 workBook = createWorkBook(inputStream, excelSuffix);
@@ -125,13 +120,13 @@ public class SimplePoiHelper<T> extends PoiExcelHelper<T> {
 
         final int defaultOrder = 1;   //默认排序从1开始
 
-        for (Object excelEntity : excelEntities) {
+        for (T excelEntity : excelEntities) {
 
             Row row = createRow(sheet, rowCounter);
 
             for (Field field : fields) {
 
-                Triple<Object, Integer, ? extends Class> triple = ExcelProvider.fieldValueOrderTypeTriple(excelEntity, field);//获取属性值,类型和排序映射
+                Triple<Object, Integer, ? extends Class> triple = ExcelProvider.fieldValueOrderTypeTriple(excelEntity, field);//获取属性值,排序,类型映射
 
                 Cell cell = row.createCell(triple.getMiddle() - defaultOrder);
 
@@ -165,13 +160,10 @@ public class SimplePoiHelper<T> extends PoiExcelHelper<T> {
                 if (!CustomValidator.checkCollectionNotEmpty(fields)) {
                     continue;
                 }
-
                 boolean effective = checkExcelTemplatePropertiesEffective(fields, excelSuffix, ExcelTemplateTitleOption.NOT_CARE);
-
                 if (!effective) {
                     continue;
                 }
-
                 Sheet sheet = workbook.getSheet(excelEntity.getLeft());
 
                 if (!CustomValidator.checkObjectNotNull(sheet)) {
@@ -209,7 +201,7 @@ public class SimplePoiHelper<T> extends PoiExcelHelper<T> {
     }
 
     @Override
-    public int batchWrite(String path, String excelName, ExcelSuffix excelSuffix, Collection<Triple<String, Class<?>, Collection<?>>> excelEntities) {
+    public int batchWrite(String path, String excelName,Collection<Triple<String, Class<?>, Collection<?>>> excelEntities,ExcelSuffix excelSuffix) {
 
         CustomValidator.checkCollectionNotEmpty(excelEntities, "模版集合不能为空");
 
@@ -218,9 +210,7 @@ public class SimplePoiHelper<T> extends PoiExcelHelper<T> {
         int writeSuccessCounter = 0;
 
         for (Triple<String, Class<?>, Collection<?>> excelEntity : excelEntities) {
-
             try {
-
                 List<Field> fields = preWrite(excelEntity.getMiddle(), excelSuffix, excelEntity.getRight());
 
                 Sheet sheet = workBook.createSheet(excelEntity.getLeft());

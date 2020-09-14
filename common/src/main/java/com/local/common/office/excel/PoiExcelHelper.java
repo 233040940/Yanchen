@@ -2,12 +2,12 @@ package com.local.common.office.excel;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
-import com.local.common.SystemConstant;
 import com.local.common.annotation.ExcelField;
 import com.local.common.enums.ExcelSuffix;
 import com.local.common.enums.ExcelTemplateTitleOption;
 import com.local.common.exception.CustomException;
 import com.local.common.utils.CustomValidator;
+import com.local.common.utils.DateTimeHelper;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -18,7 +18,6 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.util.StringUtils;
-
 import java.io.*;
 import java.lang.reflect.Field;
 import java.util.*;
@@ -26,7 +25,6 @@ import java.util.stream.Collectors;
 
 /**
  * @author yc
- * @version 1.0
  * @project yanchen
  * @description 使用apache poi读写excel基于自定义注解@ExcelField   TODO ==》校验excel模版策略待抽象,暂时通过枚举ExcelTemplateTitleOption进行区分
  * @date 2020-06-16 15:03
@@ -84,7 +82,6 @@ public abstract class PoiExcelHelper<T>  implements ExcelHelper<T> {
 
         return ExcelProvider.filterTemplateFields(excelTemple,ExcelField.class);
     }
-
 
     //查找模版title
     protected final List<Pair<String, Integer>> findExcelTemplateTitle(List<Field> fields, ExcelSuffix suffix) {
@@ -209,15 +206,15 @@ public abstract class PoiExcelHelper<T>  implements ExcelHelper<T> {
 
         switch (suffix) {
             case XLS:
-                orderMaxLimit = SystemConstant.EXCEL_MAX_COLUMN_03;
+                orderMaxLimit = EXCEL_MAX_COLUMN_03;
                 break;
             default:
-                orderMaxLimit = SystemConstant.EXCEL_MAX_COLUMN_07;
+                orderMaxLimit = EXCEL_MAX_COLUMN_07;
         }
 
         final int defaultOrder = 1;         //excel模版,属性顺序从1开始
 
-        if (option == ExcelTemplateTitleOption.CARE) {
+        if (option == ExcelTemplateTitleOption.CARE) {    //如果在意模版title则检验title，order字段；（用于区分读，写操作。读操作不关心title属性）
 
             Set<String> titles = Sets.newHashSetWithExpectedSize(capacity);
 
@@ -243,7 +240,7 @@ public abstract class PoiExcelHelper<T>  implements ExcelHelper<T> {
             return true;
         }
 
-        for (ExcelField excelField : annotations) {
+        for (ExcelField excelField : annotations) {        //不在意title则只校验order字段
 
             if (excelField.order() < defaultOrder || excelField.order() > orderMaxLimit) {
                 return false;
@@ -321,13 +318,13 @@ public abstract class PoiExcelHelper<T>  implements ExcelHelper<T> {
 
         switch (suffix) {
             case XLS:
-                if (size > SystemConstant.EXCEL_MAX_ROW_03) {
-                    throw new CustomException(String.format("03版excelRow不超过%s行", SystemConstant.EXCEL_MAX_ROW_03));
+                if (size > EXCEL_MAX_ROW_03) {
+                    throw new CustomException(String.format("03版excelRow不超过%s行",EXCEL_MAX_ROW_03));
                 }
                 break;
             default:
-                if (size > SystemConstant.EXCEL_MAX_ROW_07) {
-                    throw new CustomException(String.format("07版excelRow不超过%s行", SystemConstant.EXCEL_MAX_ROW_07));
+                if (size > EXCEL_MAX_ROW_07) {
+                    throw new CustomException(String.format("07版excelRow不超过%s行",EXCEL_MAX_ROW_07));
                 }
         }
     }
@@ -337,19 +334,19 @@ public abstract class PoiExcelHelper<T>  implements ExcelHelper<T> {
 
         switch (suffix) {
             case XLS:
-                if (size > SystemConstant.EXCEL_MAX_COLUMN_03) {
-                    throw new CustomException(String.format("03版excelColumn不超过%s列", SystemConstant.EXCEL_MAX_COLUMN_03));
+                if (size > EXCEL_MAX_COLUMN_03) {
+                    throw new CustomException(String.format("03版excelColumn不超过%s列", EXCEL_MAX_COLUMN_03));
                 }
                 break;
             default:
-                if (size > SystemConstant.EXCEL_MAX_COLUMN_07) {
-                    throw new CustomException(String.format("07版excelColumn不超过%s列", SystemConstant.EXCEL_MAX_COLUMN_07));
+                if (size > EXCEL_MAX_COLUMN_07) {
+                    throw new CustomException(String.format("07版excelColumn不超过%s列", EXCEL_MAX_COLUMN_07));
                 }
         }
     }
 
     //设置单元格的值
-    protected void setCellValue(Class<?> fieldType, Cell cell, Object value) {
+    public static void setCellValue(Class<?> fieldType, Cell cell, Object value) {
 
         ImmutableSet cellNumberType = ImmutableSet.of(int.class, Integer.class, long.class, Long.class, short.class,
                 Short.class, byte.class, Byte.class, double.class, Double.class,
@@ -365,7 +362,6 @@ public abstract class PoiExcelHelper<T>  implements ExcelHelper<T> {
             }
 
             if (cellNumberType.contains(fieldType)) {
-
                 cell.setCellValue(Double.parseDouble(value.toString()));
                 return;
             }
@@ -376,7 +372,8 @@ public abstract class PoiExcelHelper<T>  implements ExcelHelper<T> {
             }
 
             if (fieldType == Date.class) {
-                cell.setCellValue((Date) value);
+                String date = DateTimeHelper.dateToConvertString((Date) value);   // 便于显示转换成字符串格式
+                cell.setCellValue(date);
                 return;
             }
         }
@@ -387,42 +384,32 @@ public abstract class PoiExcelHelper<T>  implements ExcelHelper<T> {
     public static void setExcelTemplateFieldValue(Object t, Cell cell, Field field, Class<?> fieldType) {
 
         field.setAccessible(true);
-
         try {
-
             if (effectiveFieldType.contains(fieldType)) {
-
                 if (fieldType == String.class) {
-
                     CellValueType.STRING.setFieldValue(t, cell, field);
                     return;
                 }
-
                 if (fieldType == Date.class) {
                     CellValueType.DATE.setFieldValue(t, cell, field);
                     return;
                 }
-
                 if (fieldType == int.class || fieldType == Integer.class) {
                     CellValueType.INTEGER.setFieldValue(t, cell, field);
                     return;
                 }
-
                 if (fieldType == long.class || fieldType == Long.class) {
                     CellValueType.LONG.setFieldValue(t, cell, field);
                     return;
                 }
-
                 if (fieldType == short.class || fieldType == Short.class) {
                     CellValueType.SHORT.setFieldValue(t, cell, field);
                     return;
                 }
-
                 if (fieldType == byte.class || fieldType == Byte.class) {
                     CellValueType.BYTE.setFieldValue(t, cell, field);
                     return;
                 }
-
                 if (fieldType == double.class || fieldType == Double.class) {
                     CellValueType.DOUBLE.setFieldValue(t, cell, field);
                     return;
@@ -453,43 +440,36 @@ public abstract class PoiExcelHelper<T>  implements ExcelHelper<T> {
      */
 
     enum CellValueType {
-
         STRING() {
             @Override
             void setFieldValue(Object t, Cell cell, Field field) throws IllegalAccessException {
-
                 field.set(t, cell.getStringCellValue());
-
             }
         }, LONG() {
             @Override
             void setFieldValue(Object t, Cell cell, Field field) throws IllegalAccessException {
-
                 field.set(t, (long) cell.getNumericCellValue());
             }
         }, SHORT() {
             @Override
             void setFieldValue(Object t, Cell cell, Field field) throws IllegalAccessException {
-
                 field.set(t, (short) cell.getNumericCellValue());
             }
         },
         DOUBLE() {
             @Override
             void setFieldValue(Object t, Cell cell, Field field) throws IllegalAccessException {
-
                 field.set(t, cell.getNumericCellValue());
             }
         }, FLOAT() {
             @Override
             void setFieldValue(Object t, Cell cell, Field field) throws IllegalAccessException {
-
                 field.set(t, (float) cell.getNumericCellValue());
             }
         }, DATE() {
             @Override
             void setFieldValue(Object t, Cell cell, Field field) throws IllegalAccessException {
-                field.set(t, cell.getDateCellValue());
+                field.set(t, DateTimeHelper.stringToConvertDate(cell.getStringCellValue()));
             }
         },
         BYTE() {
@@ -513,4 +493,5 @@ public abstract class PoiExcelHelper<T>  implements ExcelHelper<T> {
 
         abstract void setFieldValue(Object t, Cell cell, Field field) throws IllegalAccessException;
     }
+
 }

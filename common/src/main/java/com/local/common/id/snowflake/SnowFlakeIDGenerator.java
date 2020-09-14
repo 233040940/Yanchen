@@ -61,8 +61,6 @@ public class SnowFlakeIDGenerator  extends CustomIDGenerator<Long> {
     //上次生成id的时间戳
     private long lastTimestamp = -1L;
 
-
-
     public SnowFlakeIDGenerator(long workerId, long dataCenterId) {
 
         if (workerId > maxWorkerId || workerId < 0) {

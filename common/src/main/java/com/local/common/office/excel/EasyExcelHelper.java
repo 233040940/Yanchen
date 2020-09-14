@@ -9,5 +9,4 @@ package com.local.common.office.excel;
  */
 public abstract class EasyExcelHelper implements ExcelHelper{
 
-
 }

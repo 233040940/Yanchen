@@ -29,7 +29,7 @@ public class SimpleRedisDistributedStrategy extends DistributedStrategy {
 
     private RedisTemplateHelper initRedisTemplateHelper(){
 
-    return ApplicationContextProvider.getBean("redisTemplateHelper",RedisTemplateHelper.class);
+    return ApplicationContextProvider.getBean("redisTemplateHelper", RedisTemplateHelper.class);
     }
 
     private void setRedisTemplateHelper(RedisTemplateHelper redisTemplateHelper){

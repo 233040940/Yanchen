@@ -6,13 +6,10 @@ import org.apache.commons.lang3.tuple.Triple;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
-
 import java.lang.reflect.Field;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.Callable;
-import java.util.concurrent.CountDownLatch;
-
 /**
  * @author yc
  * @version 1.0
@@ -21,8 +18,6 @@ import java.util.concurrent.CountDownLatch;
  * @date 2020-06-25 19:48
  */
 public class FutureReadWorker implements Callable<Collection> {
-
-    private static final int READ_MAX_ROW = 30000;
 
     private Sheet sheet;
 
@@ -46,7 +41,7 @@ public class FutureReadWorker implements Callable<Collection> {
 
         List result= Lists.newArrayListWithCapacity(end);
 
-        for (int i = start; i < end; i++) {
+        for (int i = start; i <end; i++) {
 
             Row row = sheet.getRow(i);
 

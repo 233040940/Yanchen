@@ -9,38 +9,29 @@ import java.lang.reflect.Field;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * @author yc
- * @project yanchen
- * @date 2020-06-24 19:14
- */
 public class ExcelProvider {
 
 
     private ExcelProvider(){
-
         throw new RuntimeException("ExcelProvider is tool class,Not support instanced");
     }
 
-
-    /**
-      * @Description (属性值-属性顺序-属性类型）配对
-      * @Param [t 目标对象, field 目标属性]
-      * @return Triple<Object 属性值,Integer 属性order,? extends java.lang.Class 属性类型>
-      * @Author yc
-      * @Date 2020-06-24 19:21
-      * @version 1.0
-      */
-
-    public static <T> Triple<Object,Integer,? extends Class> fieldValueOrderTypeTriple(T t, Field field) {
+/**
+ * @description: (属性值-属性顺序-属性类型）配对
+ * @create-by: yanchen @date:2020-06-29 01:10
+ * @param t
+ * @param field
+ * @return: org.apache.commons.lang3.tuple.Triple<java.lang.Object , java.lang.Integer , ?   extends   java.lang.Class>
+ */
+public static <T> Triple<Object,Integer,? extends Class> fieldValueOrderTypeTriple(T t, Field field) {
 
         try {
 
             field.setAccessible(true);
 
             ExcelField excelField = ReflectionHelper.findAnnotationOnField(field, ExcelField.class);
-
             int order = excelField.order();      //属性顺序
+
             Object fieldValue = field.get(t);    //属性值
             Class<?> type=field.getType();       //属性类型
 

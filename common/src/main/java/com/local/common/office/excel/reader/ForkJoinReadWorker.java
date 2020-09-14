@@ -48,19 +48,12 @@ public class ForkJoinReadWorker extends RecursiveTask<Collection> {
         try {
             boolean canCompute = (end - start) <= READ_MAX_ROW;
             if (canCompute) {
-
                 for (int i = start; i < end; i++) {
-
                     Row row = sheet.getRow(i);
-
                     Object t = excelTemplate.newInstance();
-
                     for (Triple<Field, Integer, ? extends Class<?>> triple : triples) {
-
                         final int defaultOrder = 1;
-
                         Cell cell = row.getCell(triple.getMiddle() - defaultOrder);
-
                         PoiExcelHelper.setExcelTemplateFieldValue(t, cell, triple.getLeft(), triple.getRight());
                     }
 
@@ -77,7 +70,6 @@ public class ForkJoinReadWorker extends RecursiveTask<Collection> {
                 seconds.fork();
 
                 Collection join = first.join();
-
                 Collection join1 = seconds.join();
 
                 result.addAll(join);

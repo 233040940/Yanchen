@@ -34,11 +34,4 @@ public class Dept{
     @ExcelField(title = "入职时间",order = 9)
     private Date workDate;
 
-    @ExcelField(title = "a",order = 10)
-    private long a;
-
-    @ExcelField(title = "b",order = 11)
-    private float b;
-
-    private Boolean c;
 }

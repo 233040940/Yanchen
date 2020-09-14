@@ -2,9 +2,10 @@ package com.local.common.office.excel;
 
 import com.local.common.enums.ExcelSuffix;
 import com.local.common.enums.ExcelTemplateTitleOption;
-import com.local.common.enums.ReaderType;
+import com.local.common.enums.WorkerSource;
 import com.local.common.exception.CustomException;
 import com.local.common.office.excel.reader.MultiThreadReader;
+import com.local.common.office.excel.writer.MultiThreadWriter;
 import com.local.common.utils.CustomValidator;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.tuple.Pair;
@@ -13,6 +14,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
+import javax.annotation.concurrent.ThreadSafe;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -24,31 +26,34 @@ import java.util.concurrent.*;
  * @author yc
  * @version 1.0
  * @project yanchen
- * @description 多线程版本
+ * @description 多线程读写excel
  * @date 2020-06-24 16:06
  */
+
+@ThreadSafe
 public class MultiThreadPoiHelper<T> extends PoiExcelHelper<T> {
 
-    private ReaderType readerType;
+    private final WorkerSource workerSource;
 
 
-    public MultiThreadPoiHelper(){
+    public MultiThreadPoiHelper() { this.workerSource = WorkerSource.FORKJOIN; }
 
-        this.readerType=ReaderType.FORKJOIN;
+    public MultiThreadPoiHelper(WorkerSource workerSource) {
+        this.workerSource = workerSource;
     }
 
-    public MultiThreadPoiHelper(ReaderType readerType){
-        this.readerType=readerType;
+    public static <T> MultiThreadPoiHelper of(WorkerSource workerSource){
+        return new MultiThreadPoiHelper<T>(workerSource);
     }
 
     @Override
     Sheet createSheet(Workbook workbook, String sheetName) {
-        return null;
+        return workbook.createSheet(sheetName);
     }
 
     @Override
     Row createRow(Sheet sheet, int index) {
-        return null;
+        return sheet.createRow(index);
     }
 
     @Override
@@ -71,7 +76,6 @@ public class MultiThreadPoiHelper<T> extends PoiExcelHelper<T> {
             boolean effective = checkExcelTemplatePropertiesEffective(fields, excelSuffix, ExcelTemplateTitleOption.NOT_CARE);
 
             if (!effective) {
-
                 throw new CustomException("无效的excelTemplate");
             }
 
@@ -89,7 +93,9 @@ public class MultiThreadPoiHelper<T> extends PoiExcelHelper<T> {
 
                     List<Triple<Field, Integer, ? extends Class<?>>> triples = ExcelProvider.templateFieldOrderTypeTriples(fields);
 
-                return  new MultiThreadReader(readerType).startRead(sheet,excelTemplate,triples);
+                    CustomValidator.checkCollectionNotEmpty(triples);
+
+                    return new MultiThreadReader(workerSource).startRead(sheet, excelTemplate, triples);
                 }
             } catch (IOException | InterruptedException | ExecutionException e) {
                 e.printStackTrace();
@@ -97,13 +103,29 @@ public class MultiThreadPoiHelper<T> extends PoiExcelHelper<T> {
                 closeInputStream(inputStream, workBook);
             }
         }
-
         return Collections.emptyList();
     }
 
 
     @Override
     public boolean write(String path, String excelName, String sheetName, Class<T> excelTemplate, ExcelSuffix excelSuffix, Collection<T> excelEntities) {
+
+        List<Field> fields = preWrite(excelTemplate, excelSuffix, excelEntities);
+
+        Workbook workBook = createWorkBook(excelSuffix);
+
+        Sheet sheet = createSheet(workBook, sheetName);
+
+        createExcelTemplateTitle(sheet, findExcelTemplateTitle(fields, excelSuffix), excelSuffix);
+        try {
+            boolean flag  = new MultiThreadWriter(workerSource).startWrite(sheet, fields, excelEntities);
+            if (flag) {
+                outPut(path, excelName, excelSuffix, workBook);
+                return true;
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 
@@ -113,7 +135,7 @@ public class MultiThreadPoiHelper<T> extends PoiExcelHelper<T> {
     }
 
     @Override
-    public int batchWrite(String path, String excelName, ExcelSuffix excelSuffix, Collection<Triple<String, Class<?>, Collection<?>>> excelEntities) {
+    public int batchWrite(String path, String excelName,  Collection<Triple<String, Class<?>, Collection<?>>> excelEntities,ExcelSuffix excelSuffix) {
         return 0;
     }
 }

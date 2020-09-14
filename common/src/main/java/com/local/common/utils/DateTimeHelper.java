@@ -1,6 +1,5 @@
 package com.local.common.utils;
 
-import java.text.DateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -132,13 +131,30 @@ public class DateTimeHelper {
   * @version 1.0
   */
 
-    public static  final String dateConvertString(final Date date){
+    public static  final String dateToConvertString(final Date date){
 
-        return dateConvertString(date,DateTimePattern.STANDARD_DATETIME_FORMAT.pattern);
+        return dateToConvertString(date,DateTimePattern.STANDARD_DATETIME_FORMAT.pattern);
     }
 
-    public static  final String dateConvertString(final Date date,final  String pattern){
+    public static  final String dateToConvertString(final Date date,final  String pattern){
 
         return DateTimeFormatter.ofPattern(pattern).format(LocalDateTime.ofInstant(date.toInstant(),ZoneOffset.of("+8")));
+    }
+
+    public static  final Date stringToConvertDate(final String date){
+        return stringToConvertDate(date,DateTimePattern.STANDARD_DATETIME_FORMAT.pattern);
+    }
+
+    public static  final Date stringToConvertDate(final String date,final String pattern){
+
+        return Date.from(stringToConvertLocalDateTime(date, pattern).atZone(ZoneId.systemDefault()).toInstant());
+    }
+
+    public static final LocalDateTime   stringToConvertLocalDateTime(final String date){
+        return stringToConvertLocalDateTime(date,DateTimePattern.STANDARD_DATETIME_FORMAT.pattern);
+    }
+
+    public static final LocalDateTime   stringToConvertLocalDateTime(final String date,final String pattern){
+        return LocalDateTime.parse(date, DateTimeFormatter.ofPattern(pattern));
     }
 }

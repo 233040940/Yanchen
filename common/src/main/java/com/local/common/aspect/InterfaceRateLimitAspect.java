@@ -4,7 +4,9 @@ import com.google.common.collect.Sets;
 import com.google.common.util.concurrent.RateLimiter;
 import com.local.common.annotation.InterfaceRateLimit;
 import com.local.common.enums.Framework;
+import com.local.common.id.CustomIDGenerator;
 import com.local.common.id.snowflake.SnowFlakeIDGenerator;
+import com.local.common.utils.RedisOperationProvider;
 import com.local.common.utils.RedisTemplateHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -13,9 +15,8 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Method;
 import java.util.HashSet;
@@ -24,7 +25,6 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * @author yc
- * @version 1.0
  * @project yanchen
  * @description 接口限流切面
  * 基于自定义注解 @InterfaceRateLimit 仅做参考
@@ -43,16 +43,15 @@ import java.util.concurrent.TimeUnit;
 public class InterfaceRateLimitAspect {
 
     @Autowired
-    private RedisTemplateHelper redisTemplateHelper;
+    private RedisOperationProvider<String,Long> redisTemplateHelper;
 
     private static final String interfaceRateLimitKey = "interfaceRateLimit";      //基于分布式架构redis 接口限流key
 
-    private static final int per_second_max_request = 2;     //每秒最大请求数
+    private static final int per_second_max_request = 10;     //每秒最大请求数
 
     private static final ConcurrentHashMap<String, RateLimiter> rateLimiters = new ConcurrentHashMap<>(); //基于单体架构guava RateLimiter进行限流
 
     private RateLimiter rateLimiter;
-
 
     @Pointcut("@annotation(com.local.common.annotation.InterfaceRateLimit)")
     public void pointCut() {
@@ -69,14 +68,11 @@ public class InterfaceRateLimitAspect {
         boolean annotationPresent = targetMethod.isAnnotationPresent(InterfaceRateLimit.class);
 
         if (annotationPresent) {
-
             InterfaceRateLimit interfaceRateLimit = targetMethod.getAnnotation(InterfaceRateLimit.class);
-
             Framework model = interfaceRateLimit.model();
-
             switch (model) {
                 case DISTRIBUTED:
-                    Object permit = redisTemplateHelper.rightPop(interfaceRateLimitKey);
+                    Long permit = redisTemplateHelper.listRightPop(interfaceRateLimitKey);
                     if (permit == null) {
                         return "系统繁忙,请稍微再试试";
                     }
@@ -93,19 +89,16 @@ public class InterfaceRateLimitAspect {
                     } else {
                         this.rateLimiter = rateLimiter;
                     }
+
                     long waitTimeOut = interfaceRateLimit.waitTimeOut();
-
                     TimeUnit timeUnit = interfaceRateLimit.timeOutUnit();
-                    if (!this.rateLimiter.tryAcquire(waitTimeOut,timeUnit)) {
 
+                    if (!this.rateLimiter.tryAcquire(waitTimeOut,timeUnit)) {
                         return "系统繁忙,请稍微再试试";
                     }
-
                     log.info("线程:{}获取到令牌",Thread.currentThread().getName());
             }
         }
-
-
         return joinPoint.proceed();
     }
 
@@ -114,7 +107,8 @@ public class InterfaceRateLimitAspect {
 
         HashSet<Long> ids = Sets.newHashSetWithExpectedSize(per_second_max_request);
 
-        SnowFlakeIDGenerator snowFlakeIDGenerator = new SnowFlakeIDGenerator(1, 1);
+        //TODO 此处会创建多个SnowFlakeIDGenerator对象，待优化，一般情况 都会提供一个服务获取分布式ID，避免反复创建对象的开销。
+        CustomIDGenerator<Long> snowFlakeIDGenerator = new SnowFlakeIDGenerator(1, 1);
 
         for (int i = 0; i < per_second_max_request; i++) {
 
@@ -122,11 +116,9 @@ public class InterfaceRateLimitAspect {
 
             ids.add(id);
         }
-        Long count = redisTemplateHelper.leftPushAll(interfaceRateLimitKey, ids);//每秒生成2个令牌
+        Long count = redisTemplateHelper.listLeftPushAll(interfaceRateLimitKey, ids);//每秒生成10个令牌
 
         log.info("生成{}个令牌", count);
-
-
     }
 
 }
