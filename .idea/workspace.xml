@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9e080a66-8761-42c5-9943-1d4360f9d84f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/yanchen.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/annotation/InterfaceRateLimit.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/office/excel/entity/ExcelTemplate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yanchen-shiro/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/mvnw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/CommonApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/CustomConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/CustomConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/SystemConstant.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/SystemConstant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/annotation/ExcelField.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/annotation/ExcelField.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/annotation/InterfaceRateLimit.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/aspect/InterfaceRateLimitAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/aspect/InterfaceRateLimitAspect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/aspect/RepeatSendAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/aspect/RepeatSendAspect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/entity/BaseParameterEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/entity/BaseParameterEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/entity/Depart.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/office/excel/entity/Depart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/entity/Dept.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/office/excel/entity/Dept.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/entity/ResultResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/entity/ResultResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/entity/UrlMatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/entity/UrlMatcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/enums/DocSuffix.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/enums/DocSuffix.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/enums/ExcelSuffix.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/enums/ExcelSuffix.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/enums/ExcelTemplateTitleOption.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/enums/ExcelTemplateTitleOption.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/enums/Framework.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/enums/Framework.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/enums/ResponseCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/enums/ResponseCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/enums/ResponseStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/enums/ResponseStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/enums/ThreadVersion.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/enums/ThreadVersion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/enums/WorkerSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/enums/WorkerSource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/exception/CustomException.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/exception/CustomException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/filter/RootTokenValidFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/filter/RootTokenValidFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/filter/validator/AbstractTokenValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/filter/validator/AbstractTokenValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/filter/validator/IncludeSubjectAndIssuserTokenValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/filter/validator/IncludeSubjectAndIssuserTokenValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/filter/validator/IncludeSubjectTokenValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/filter/validator/IncludeSubjectTokenValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/filter/validator/SimpleTokenValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/filter/validator/SimpleTokenValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/id/CustomIDGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/id/CustomIDGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/id/snowflake/SnowFlakeIDGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/id/snowflake/SnowFlakeIDGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/office/OfficeProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/office/OfficeProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/office/excel/EasyExcelHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/office/excel/EasyExcelHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/office/excel/ExcelHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/office/excel/ExcelHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/office/excel/ExcelProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/office/excel/ExcelProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/office/excel/MultiThreadPoiHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/office/excel/MultiThreadPoiHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/office/excel/PoiExcelHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/office/excel/PoiExcelHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/office/excel/SimplePoiHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/office/excel/SimplePoiHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/office/excel/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/office/excel/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/office/excel/reader/ForkJoinReadWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/office/excel/reader/ForkJoinReadWorker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/office/excel/reader/FutureReadWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/office/excel/reader/FutureReadWorker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/office/excel/reader/MultiThreadReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/office/excel/reader/MultiThreadReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/office/excel/writer/ForkJoinWriteWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/office/excel/writer/ForkJoinWriteWorker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/office/excel/writer/FutureWriteWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/office/excel/writer/FutureWriteWorker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/office/excel/writer/MultiThreadWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/office/excel/writer/MultiThreadWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/office/pdf/PDFHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/office/pdf/PDFHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/office/word/WordHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/office/word/WordHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/repeat/CustomCacheManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/repeat/CustomCacheManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/repeat/RepeatSendValidHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/repeat/RepeatSendValidHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/repeat/SimpleCustomCacheManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/repeat/SimpleCustomCacheManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/repeat/distributed/DistributedStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/repeat/distributed/DistributedStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/repeat/distributed/redis/SimpleRedisDistributedStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/repeat/distributed/redis/SimpleRedisDistributedStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/repeat/standalone/StandAloneStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/repeat/standalone/StandAloneStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/repeat/standalone/guava/SimpleGuavaStandAloneStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/repeat/standalone/guava/SimpleGuavaStandAloneStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/repository/BaseJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/repository/BaseJpaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/utils/ApplicationContextProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/utils/ApplicationContextProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/utils/BeanCopyHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/utils/BeanCopyHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/utils/CryptoHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/utils/CryptoHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/utils/CustomValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/utils/CustomValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/utils/DateTimeHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/utils/DateTimeHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/utils/FileHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/utils/FileHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/utils/IntHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/utils/IntHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/utils/JoinerHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/utils/JoinerHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/utils/JsonHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/utils/JsonHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/utils/JwtProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/utils/JwtProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/utils/PDFHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/utils/PDFHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/utils/RandomHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/utils/RandomHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/utils/RedisOperationProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/utils/RedisOperationProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/utils/RedisTemplateHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/utils/RedisTemplateHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/utils/ReflectionHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/utils/ReflectionHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/java/com/local/common/utils/SplitterHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/main/java/com/local/common/utils/SplitterHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-shiro/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/src/test/java/com/local/common/CommonApplicationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-common/src/test/java/com/local/common/CommonApplicationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netty-server/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-netty-server/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netty-server/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-netty-server/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netty-server/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-netty-server/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netty-server/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-netty-server/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netty-server/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-netty-server/mvnw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netty-server/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-netty-server/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netty-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-netty-server/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netty-server/src/main/java/com/local/nettyserver/NettyServerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-netty-server/src/main/java/com/local/nettyserver/NettyServerApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netty-server/src/main/java/com/local/server/NettyServerBootStrapProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-netty-server/src/main/java/com/local/server/NettyServerBootStrapProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netty-server/src/main/java/com/local/server/ServerHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-netty-server/src/main/java/com/local/server/ServerHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netty-server/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-netty-server/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/netty-server/src/test/java/com/local/nettyserver/NettyServerApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/yanchen-netty-server/src/test/java/com/local/nettyserver/NettyServerApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="/usr/local/Cellar/maven@3.3/3.3.9_1/maven-home" />
+        <option name="mavenHome" value="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3" />
+        <option name="userSettingsFile" value="/usr/local/Cellar/maven@3.3/3.3.9_1/libexec/conf/settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1i2dN3gsfZgiRQlT8j86y6ugUxx" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="extract.method.default.visibility" value="private" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.Test">
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.local.common.office.excel.Test" />
+      <module name="yanchen-common" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.local.common.office.excel.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="yanchen-common" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="yanchen-common" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <option name="filePath" />
+      <option name="vmParameters" />
+      <option name="alternativeJrePath" />
+      <option name="programParameters" />
+      <option name="passParentEnvs" value="true" />
+      <option name="workingDirectory" />
+      <option name="isAlternativeJrePathEnabled" value="false" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CommonApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="yanchen-common" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.local.common.CommonApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NettyServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="yanchen-netty-server" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.local.nettyserver.NettyServerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Test" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>$USER_HOME$/.subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9e080a66-8761-42c5-9943-1d4360f9d84f" name="Default Changelist" comment="" />
+      <created>1601109580215</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1601109580215</updated>
+      <workItem from="1601109582941" duration="2000" />
+      <workItem from="1601109701123" duration="2225000" />
+      <workItem from="1601111976323" duration="1312000" />
+      <workItem from="1601117461998" duration="2780000" />
+      <workItem from="1601121440426" duration="238000" />
+      <workItem from="1601676049382" duration="3883000" />
+      <workItem from="1601680021318" duration="10502000" />
+      <workItem from="1601866835070" duration="3585000" />
+      <workItem from="1602331878518" duration="278000" />
+      <workItem from="1602410280158" duration="695000" />
+      <workItem from="1602421495402" duration="431000" />
+      <workItem from="1602427784556" duration="5693000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="354" y="107" key="#Inspections" timestamp="1602509804763">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state x="354" y="107" key="#Inspections/0.23.1440.797@0.23.1440.797" timestamp="1602509804763" />
+    <state x="438" y="252" key="#Notifications" timestamp="1602323625583">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state x="438" y="252" key="#Notifications/0.23.1440.797@0.23.1440.797" timestamp="1602323625583" />
+    <state x="208" y="23" key="#Project_Structure" timestamp="1602509756385">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state x="208" y="23" key="#Project_Structure/0.23.1440.797@0.23.1440.797" timestamp="1602509756385" />
+    <state x="320" y="87" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1602506460421">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state x="320" y="87" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.797@0.23.1440.797" timestamp="1602506460421" />
+    <state x="533" y="135" key="#com.intellij.ide.util.MemberChooser" timestamp="1601756833724">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state x="533" y="135" key="#com.intellij.ide.util.MemberChooser/0.23.1440.797@0.23.1440.797" timestamp="1601756833724" />
+    <state x="224" y="343" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1601757377151">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state x="224" y="343" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.23.1440.797@0.23.1440.797" timestamp="1601757377151" />
+    <state width="1398" height="191" key="GridCell.Tab.0.bottom" timestamp="1602509489740">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state width="1398" height="191" key="GridCell.Tab.0.bottom/0.23.1440.797@0.23.1440.797" timestamp="1602509489740" />
+    <state width="1398" height="191" key="GridCell.Tab.0.center" timestamp="1602509489739">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state width="1398" height="191" key="GridCell.Tab.0.center/0.23.1440.797@0.23.1440.797" timestamp="1602509489739" />
+    <state width="1398" height="191" key="GridCell.Tab.0.left" timestamp="1602509489739">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state width="1398" height="191" key="GridCell.Tab.0.left/0.23.1440.797@0.23.1440.797" timestamp="1602509489739" />
+    <state width="1398" height="191" key="GridCell.Tab.0.right" timestamp="1602509489740">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state width="1398" height="191" key="GridCell.Tab.0.right/0.23.1440.797@0.23.1440.797" timestamp="1602509489740" />
+    <state x="258" y="83" key="Maven.ArtifactSearchDialog" timestamp="1601111189023">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state x="258" y="83" key="Maven.ArtifactSearchDialog/0.23.1440.797@0.23.1440.797" timestamp="1601111189023" />
+    <state x="221" y="60" key="SettingsEditor" timestamp="1601680185789">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state x="221" y="60" key="SettingsEditor/0.23.1440.797@0.23.1440.797" timestamp="1601680185789" />
+    <state x="19" y="96" width="570" height="524" key="StructurePopup" timestamp="1601679374199">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state x="19" y="96" width="570" height="524" key="StructurePopup/0.23.1440.797@0.23.1440.797" timestamp="1601679374199" />
+    <state width="500" height="278" key="documentation.popup.size" timestamp="1602325738078">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state width="500" height="278" key="documentation.popup.size/0.23.1440.797@0.23.1440.797" timestamp="1602325738078" />
+    <state x="458" y="191" key="extract.method.dialog" timestamp="1601112402223">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state x="458" y="191" key="extract.method.dialog/0.23.1440.797@0.23.1440.797" timestamp="1601112402223" />
+    <state width="600" height="428" key="javadoc.popup" timestamp="1601117831360">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state width="600" height="428" key="javadoc.popup/0.23.1440.797@0.23.1440.797" timestamp="1601117831360" />
+    <state x="54" y="44" key="new project wizard" timestamp="1602509257379">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state x="54" y="44" key="new project wizard/0.23.1440.797@0.23.1440.797" timestamp="1602509257379" />
+    <state x="385" y="144" width="670" height="676" key="search.everywhere.popup" timestamp="1602421784483">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state x="385" y="144" width="670" height="676" key="search.everywhere.popup/0.23.1440.797@0.23.1440.797" timestamp="1602421784483" />
+    <state x="558" y="219" key="svn.repositoryBrowser" timestamp="1601121463234">
+      <screen x="0" y="23" width="1440" height="797" />
+    </state>
+    <state x="558" y="219" key="svn.repositoryBrowser/0.23.1440.797@0.23.1440.797" timestamp="1601121463234" />
+  </component>
+</project>

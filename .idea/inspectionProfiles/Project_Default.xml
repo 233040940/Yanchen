@@ -1,6 +1,11 @@
 <component name="InspectionProjectProfileManager">
   <profile version="1.0">
     <option name="myName" value="Project Default" />
+    <inspection_tool class="DuplicatedCode" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <Languages>
+        <language minSize="58" name="Java" />
+      </Languages>
+    </inspection_tool>
     <inspection_tool class="Duplicates" enabled="false" level="WARNING" enabled_by_default="false" />
     <inspection_tool class="JavaDoc" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="TOP_LEVEL_CLASS_OPTIONS">
@@ -33,5 +38,6 @@
       <option name="IGNORE_POINT_TO_ITSELF" value="false" />
       <option name="myAdditionalJavadocTags" value="date,project,description,Description" />
     </inspection_tool>
+    <inspection_tool class="MavenModelInspection" enabled="true" level="WARNING" enabled_by_default="true" />
   </profile>
 </component>
