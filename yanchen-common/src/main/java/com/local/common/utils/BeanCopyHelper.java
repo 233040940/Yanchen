@@ -14,7 +14,6 @@ import java.util.stream.Collectors;
 public class BeanCopyHelper {
 
     private BeanCopyHelper(){
-
         throw new RuntimeException("BeanCopyHelper is tool class,Not support instanced");
     }
 
@@ -24,15 +23,12 @@ public class BeanCopyHelper {
       * @return T
       * @Author yc
       */
-
     public static <S,T> T copy(S source, T target) {
-
         BeanUtils.copyProperties(source, target);
         return target;
     }
 
     public static <S,T> T copy(S source, Class<T> tClass) {
-
         try {
             T t = tClass.newInstance();
             return copy(source, t);
@@ -43,21 +39,17 @@ public class BeanCopyHelper {
     }
 
     public static <S,T> List<T> copyAny(Collection<S> sources, Class<T>tClass){
-
         if(CollectionUtils.isEmpty(sources)){
             return Collections.EMPTY_LIST;
         }
-
      return   sources.stream().filter((e)->e!=null).map((e)-> copy(e,tClass)).collect(Collectors.toList());
     }
 
 
     public static <S,T> List<T> copyAnyExclude(Collection<S> sources,Class<T> tClass,String ...excludeProperties){
-
         if (CollectionUtils.isEmpty(sources)){
             return Collections.EMPTY_LIST;
         }
-
         return sources.stream().filter((e)->e!=null).map((e)->copyExclude(e,tClass,excludeProperties)).collect(Collectors.toList());
     }
 
@@ -71,15 +63,12 @@ public class BeanCopyHelper {
 
 
     public static <S,T> T copyExclude(S source, T target,String ...excludeProperties) {
-
         BeanUtils.copyProperties(source,target,excludeProperties);
         return target;
     }
 
     public static <S,T> T copyExclude(S source, Class<T> tClass,String ...excludeProperties) {
-
         try {
-
             T t = tClass.newInstance();
             return copyExclude(source, t,excludeProperties);
         } catch (Exception e) {
@@ -87,6 +76,5 @@ public class BeanCopyHelper {
             return null;
         }
     }
-
 }
 

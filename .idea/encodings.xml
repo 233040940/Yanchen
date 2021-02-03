@@ -6,6 +6,6 @@
     <file url="file://$PROJECT_DIR$/yanchen-common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/yanchen-netty-server" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/yanchen-netty-server/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/yanchen-shiro/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yanchen-security/src/main/java" charset="UTF-8" />
   </component>
 </project>

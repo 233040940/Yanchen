@@ -1,8 +1,8 @@
 package com.local.common.office.excel.writer;
 
 import com.google.common.collect.Lists;
-import com.local.common.office.excel.ExcelProvider;
-import com.local.common.office.excel.PoiExcelHelper;
+import com.local.common.office.excel.ExcelHelper;
+import com.local.common.office.excel.PoiExcelProvider;
 import org.apache.commons.lang3.tuple.Triple;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -42,7 +42,6 @@ public class FutureWriteWorker implements Callable<Boolean> {
     }
     @Override
     public Boolean call() {
-
         final int defaultOrder=1;
         ArrayList  entities = Lists.newArrayList(excelEntities);
         try {
@@ -53,14 +52,11 @@ public class FutureWriteWorker implements Callable<Boolean> {
                     row =sheet.createRow(i);
                 }
                 for (Field field : fields) {
-                        Triple<Object, Integer, ? extends Class> triple = ExcelProvider.fieldValueOrderTypeTriple(entities.get(counter), field);//获取属性值,类型和排序映射
-
+                        Triple<Object, Integer, ? extends Class> triple = ExcelHelper.fieldValueOrderTypeTriple(entities.get(counter), field);//获取属性值,类型和排序映射
                         Cell cell = row.createCell(triple.getMiddle() - defaultOrder);
-
-                        PoiExcelHelper.setCellValue(triple.getRight(),cell,triple.getLeft());
+                        PoiExcelProvider.setCellValue(triple.getRight(),cell,triple.getLeft());
                     }
                     counter++;
-
             }
             return true;
         } catch (Exception e) {

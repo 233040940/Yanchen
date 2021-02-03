@@ -7,16 +7,13 @@ import com.local.common.enums.Framework;
 import com.local.common.id.CustomIDGenerator;
 import com.local.common.id.snowflake.SnowFlakeIDGenerator;
 import com.local.common.utils.RedisOperationProvider;
-import com.local.common.utils.RedisTemplateHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Method;
 import java.util.HashSet;
@@ -63,13 +60,9 @@ public class InterfaceRateLimitAspect {
 
     @Around(value = "pointCut()")
     public final Object interfaceRateLimit(ProceedingJoinPoint joinPoint) throws Throwable {
-
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
-
         Method targetMethod = signature.getMethod();
-
         boolean annotationPresent = targetMethod.isAnnotationPresent(InterfaceRateLimit.class);
-
         if (annotationPresent) {
             InterfaceRateLimit interfaceRateLimit = targetMethod.getAnnotation(InterfaceRateLimit.class);
             Framework model = interfaceRateLimit.model();
@@ -82,20 +75,15 @@ public class InterfaceRateLimitAspect {
                     break;
                 default:
                     String methodName = targetMethod.toGenericString();
-
                     double permitsPerSecond = interfaceRateLimit.permitsPerSecond();
-
                     RateLimiter rateLimiter = rateLimiters.putIfAbsent(methodName, RateLimiter.create(permitsPerSecond));
-
                     if (rateLimiter == null) {
                         this.rateLimiter = rateLimiters.get(methodName);
                     } else {
                         this.rateLimiter = rateLimiter;
                     }
-
                     long waitTimeOut = interfaceRateLimit.waitTimeOut();
                     TimeUnit timeUnit = interfaceRateLimit.timeOutUnit();
-
                     if (!this.rateLimiter.tryAcquire(waitTimeOut,timeUnit)) {
                         return "系统繁忙,请稍微再试试";
                     }
@@ -107,16 +95,11 @@ public class InterfaceRateLimitAspect {
 
   //  @Scheduled(fixedDelay = 10_000, initialDelay = 10_000)
     public void createPermits() {
-
         HashSet<Long> ids = Sets.newHashSetWithExpectedSize(per_second_max_request);
-
         //TODO 此处会创建多个SnowFlakeIDGenerator对象，待优化，一般情况 都会提供一个服务获取分布式ID，避免反复创建对象的开销。
         CustomIDGenerator<Long> snowFlakeIDGenerator = new SnowFlakeIDGenerator(1, 1);
-
         for (int i = 0; i < per_second_max_request; i++) {
-
             Long id = snowFlakeIDGenerator.generateID();
-
             ids.add(id);
         }
         Long count = redisTemplateHelper.listLeftPushAll(interfaceRateLimitKey, ids);//每秒生成10个令牌

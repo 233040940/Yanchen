@@ -1,22 +1,18 @@
 package com.local.common.utils;
 
 import com.google.common.collect.Lists;
-import org.apache.poi.ss.formula.functions.T;
 import org.springframework.data.geo.Circle;
 import org.springframework.data.geo.Distance;
 import org.springframework.data.geo.GeoResults;
 import org.springframework.data.geo.Metric;
 import org.springframework.data.geo.Point;
 import org.springframework.data.redis.connection.BitFieldSubCommands;
-import org.springframework.data.redis.connection.DataType;
 import org.springframework.data.redis.connection.RedisGeoCommands;
 import org.springframework.data.redis.connection.RedisZSetCommands;
 import org.springframework.data.redis.core.Cursor;
-import org.springframework.data.redis.core.RedisOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ScanOptions;
 import org.springframework.data.redis.core.ZSetOperations;
-import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 
 import java.util.Collection;
@@ -34,7 +30,6 @@ import java.util.concurrent.TimeUnit;
  * @date 2020-05-28 20:37
  */
 
-@Component
 public class RedisTemplateHelper<String, V> implements RedisOperationProvider<String, V> {
 
     private final RedisTemplate redisTemplate;
@@ -156,11 +151,19 @@ public class RedisTemplateHelper<String, V> implements RedisOperationProvider<St
 
     @Override
     public boolean setBit(String key, long offset, boolean value) {
+        final long minOffset = 0;
+        if (offset < minOffset) {
+            throw new IllegalArgumentException("offset不能小于0");
+        }
         return redisTemplate.opsForValue().setBit(key, offset, value);
     }
 
     @Override
     public boolean getBit(String key, long offset) {
+        final long minOffset = 0;
+        if (offset < minOffset) {
+            throw new IllegalArgumentException("offset不能小于0");
+        }
         return redisTemplate.opsForValue().getBit(key, offset);
     }
 
@@ -172,34 +175,31 @@ public class RedisTemplateHelper<String, V> implements RedisOperationProvider<St
     @Override
     public boolean setIfAbsent(String key, V value) {
         return redisTemplate.opsForValue().setIfAbsent(key, value);
-
     }
 
     @Override
     public boolean setIfAbsent(String key, V value, long timeOut) {
         return setIfAbsent(key, value, timeOut, TimeUnit.SECONDS);
-
     }
 
     @Override
     public boolean setIfAbsent(String key, V value, long timeOut, TimeUnit timeUnit) {
         return redisTemplate.opsForValue().setIfAbsent(key, value, timeOut, timeUnit);
-
     }
 
     @Override
     public boolean replaceValue(String key, V value, long offset) {
         final long minOffset = 0;
         if (offset < minOffset) {
-            return false;
+            throw new IllegalArgumentException("offset不能小于0");
         }
         try {
             redisTemplate.opsForValue().set(key, value, offset);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
         }
+        return false;
     }
 
     @Override
@@ -209,8 +209,8 @@ public class RedisTemplateHelper<String, V> implements RedisOperationProvider<St
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
         }
+        return false;
     }
 
     @Override
@@ -270,8 +270,8 @@ public class RedisTemplateHelper<String, V> implements RedisOperationProvider<St
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
         }
+        return false;
     }
 
     @Override
@@ -281,8 +281,8 @@ public class RedisTemplateHelper<String, V> implements RedisOperationProvider<St
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
         }
+        return false;
     }
 
     @Override
@@ -345,15 +345,15 @@ public class RedisTemplateHelper<String, V> implements RedisOperationProvider<St
     public boolean listSet(String key, long index, V value) {
         final long minIndex = -1;    //表示该list最末端索引
         if (index < minIndex) {
-            return false;
+           throw new IllegalArgumentException("index不能小于-1");
         }
         try {
             redisTemplate.opsForList().set(key, index, value);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
         }
+        return false;
     }
 
     @Override
@@ -368,8 +368,8 @@ public class RedisTemplateHelper<String, V> implements RedisOperationProvider<St
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
         }
+        return false;
     }
 
     @Override
@@ -389,8 +389,8 @@ public class RedisTemplateHelper<String, V> implements RedisOperationProvider<St
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
         }
+        return false;
     }
 
     @Override
@@ -440,13 +440,12 @@ public class RedisTemplateHelper<String, V> implements RedisOperationProvider<St
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-            return false;
         }
+        return false;
     }
 
     @Override
     public V listGet(String key, long index) {
-
         return (V) redisTemplate.opsForList().index(key, index);
     }
 
@@ -516,7 +515,7 @@ public class RedisTemplateHelper<String, V> implements RedisOperationProvider<St
 
     @Override
     public Long setIntersectAndStore(String key, String otherKey, String destKey) {
-        return setIntersectAndStore(key,Lists.newArrayList(otherKey),destKey);
+        return setIntersectAndStore(key, Lists.newArrayList(otherKey), destKey);
     }
 
     @Override
@@ -531,7 +530,7 @@ public class RedisTemplateHelper<String, V> implements RedisOperationProvider<St
 
     @Override
     public Set<V> setUnion(String key, Collection<String> otherKeys) {
-      return redisTemplate.opsForSet().union(key, otherKeys);
+        return redisTemplate.opsForSet().union(key, otherKeys);
     }
 
     @Override
@@ -571,21 +570,21 @@ public class RedisTemplateHelper<String, V> implements RedisOperationProvider<St
 
     @Override
     public V setRandomMember(String key) {
-        return (V)redisTemplate.opsForSet().randomMember(key);
+        return (V) redisTemplate.opsForSet().randomMember(key);
     }
 
     @Override
     public List<V> setRandomMembers(String key, long count) {
-        if(count < 0){
-            throw  new IllegalArgumentException("count参数不能小于0");
+        if (count < 0) {
+            throw new IllegalArgumentException("count参数不能小于0");
         }
         return redisTemplate.opsForSet().randomMembers(key, count);
     }
 
     @Override
     public Set<V> setDistinctRandomMembers(String key, long count) {
-        if(count < 0){
-            throw  new IllegalArgumentException("count参数不能小于0");
+        if (count < 0) {
+            throw new IllegalArgumentException("count参数不能小于0");
         }
         return redisTemplate.opsForSet().distinctRandomMembers(key, count);
     }
@@ -612,13 +611,11 @@ public class RedisTemplateHelper<String, V> implements RedisOperationProvider<St
 
     @Override
     public Long zsetRank(String key, Object o) {
-
         return redisTemplate.opsForZSet().rank(key, o);
     }
 
     @Override
     public Long zsetReverseRank(String key, Object o) {
-
         return redisTemplate.opsForZSet().reverseRank(key, o);
     }
 
@@ -769,7 +766,7 @@ public class RedisTemplateHelper<String, V> implements RedisOperationProvider<St
 
     @Override
     public void publishMessage(java.lang.String channel, Object message) {
-      redisTemplate.convertAndSend(channel, message);
+        redisTemplate.convertAndSend(channel, message);
     }
 
     @Override

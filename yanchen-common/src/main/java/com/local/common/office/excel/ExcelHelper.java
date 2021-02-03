@@ -1,73 +1,71 @@
 package com.local.common.office.excel;
 
-import com.local.common.enums.ExcelSuffix;
+import com.local.common.annotation.ExcelField;
 import com.local.common.office.excel.entity.ExcelTemplate;
-import org.apache.commons.lang3.tuple.Pair;
+import com.local.common.utils.ReflectionHelper;
 import org.apache.commons.lang3.tuple.Triple;
-import java.util.Collection;
-import java.util.Map;
+
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class ExcelHelper {
+
+
+    private ExcelHelper(){
+        throw new RuntimeException("ExcelProvider is tool class,Not support instanced");
+    }
 
 /**
- * @author yc
- * @project yanchen
- * @description  读写Excel接口，Pair,Triple类需要导入org.apache.commons.lang包
- * @date 2020-05-23 14:07
+ * @description: (属性值-属性顺序-属性类型）配对
+ * @create-by: yanchen @date:2020-06-29 01:10
+ * @param t
+ * @param field
+ * @return: org.apache.commons.lang3.tuple.Triple<java.lang.Object , java.lang.Integer , ?   extends   java.lang.Class>
  */
-public interface ExcelHelper<T extends ExcelTemplate> {
+public static <T> Triple<Object,Integer,? extends Class> fieldValueOrderTypeTriple(T t, Field field) {
+        try {
+            field.setAccessible(true);
+            ExcelField excelField = ReflectionHelper.findAnnotationOnField(field, ExcelField.class);
+            int order = excelField.order();      //属性顺序
+            Object fieldValue = field.get(t);    //属性值
+            Class<?> type=field.getType();       //属性类型
+            return Triple.of(fieldValue,order,type);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
-       int EXCEL_MAX_COLUMN_03=256;       //03版最大列
+    /**
+      * @Description (属性-属性顺序-属性类型）配对
+      * @Param [fields]
+      * @return java.util.List<Triple<Field 属性,Integer 属性顺序,? extends java.lang.Class<?> 属性类型>>
+      * @Author yc
+      * @Date 2020-06-24 19:24
+      * @version 1.0
+      */
 
-       int EXCEL_MAX_COLUMN_07=16384;     //07版最大列
-
-       int EXCEL_MAX_ROW_03=65536;        //03版最大行
-
-       int EXCEL_MAX_ROW_07=1048576;      //07版最大行
-
-      /**
-       * @Description 读取单个sheet到集合
-       * @param path 生成excel文件路径
-       * @param excelName excel名称
-       * @param sheetName 工作簿名称
-       * @param excelTemplate 指定生成excel的模版
-       * @param excelSuffix 生成excel文件的后缀
-       * @return Collection
-       * @Author yc
-       */
-      Collection<T> read(String path, String excelName, String sheetName, Class<T>excelTemplate, ExcelSuffix excelSuffix);
-
-      /**
-        * @Description 写单个sheet
-        * @param  path 生成excel文件路径
-        * @param excelName excel名称
-        * @param sheetName sheet名称
-        * @param excelTemplate 指定生成excel的模版
-        * @param excelSuffix excel文件的后缀
-        * @param excelEntities excel中单个sheet的内容对象集合
-        * @return boolean
-        * @Author yc
-        */
-
-      boolean write(String path, String excelName, String sheetName, Class<T> excelTemplate, ExcelSuffix excelSuffix,Collection<T> excelEntities) ;
-
-      /**
-       * @Description 批量读取多个sheet到map
-       * @param path 生成excel文件路径
-       * @param excelName excel名称
-       * @param excelEntities 指定生成excel的多个模版,Pair[String(工作簿名称),Class<? extends ExcelTemplate >(模版类class)]
-       * @param excelSuffix excel文件的后缀
-       * @return Map<String,Collection <?  extends ExcelTemplate>>
-       * @Author yc
-       */
-      Map<String,Collection <? extends ExcelTemplate>> batchRead(String path, String excelName, Collection<Pair<String,Class<? extends ExcelTemplate>>> excelEntities,ExcelSuffix excelSuffix);
-
-      /**
-       * @Description 批量写excel多个sheet
-       * @param path 生成excel文件路径
-       * @param excelName excel名称
-       * @param excelEntities 多个模版对象集合;triple[String(工作簿名称),Class <?  extends ExcelTemplate> (模版类class),Collection具体的模版对象集合]
-       * @param excelSuffix 生成excel文件的后缀
-       * @return int 写成功的个数
-       * @Author yc
-       */
-      int  batchWrite(String path, String excelName,Collection<Triple<String,Class<?  extends ExcelTemplate>,Collection<?  extends ExcelTemplate>>> excelEntities,ExcelSuffix excelSuffix);
+    public static List<Triple<Field, Integer, ? extends Class<?>>> templateFieldOrderTypeTriples(List<Field> fields){
+        List<Triple<Field, Integer, ? extends Class<?>>> collect = fields.stream().map((f) -> {
+            ExcelField excelField = ReflectionHelper.findAnnotationOnField(f, ExcelField.class);
+            int order = excelField.order();    //属性顺序
+            Class<?> type = f.getType();       //属性类型
+            return Triple.of(f, order, type);
+        }).collect(Collectors.toList());
+        return collect;
+    }
+   
+    /**
+      * @Description 通过注解过滤模版属性
+      * @Param [excelTemple , annotationClass ]
+      * @return java.util.List<java.lang.reflect.Field>
+      * @Author yc
+      * @Date 2020-06-24 19:32
+      */
+    
+    public static<A extends Annotation> List<Field> filterTemplateFields(Class<? extends ExcelTemplate> excelTemple, Class<A> annotationClass){
+        return ReflectionHelper.findFieldsOnAnnotation(excelTemple,annotationClass);
+    }
 }

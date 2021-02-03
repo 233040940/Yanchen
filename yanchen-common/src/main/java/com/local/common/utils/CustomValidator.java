@@ -19,6 +19,11 @@ import java.util.stream.Stream;
  */
 public class CustomValidator {
 
+    //空指针异常模版
+    public static final String LOG_TEMPLATE_NULL = "[工程名称:%s,包名:%s,类名:%s,方法名:%s,参数名:%s]--->参数不能为null";
+
+    public static final String LOG_TEMPLATE_EMPTY = "[工程名称:%s,包名:%s,类名:%s,方法名:%s,参数名:%s]--->参数不能为null,且包含元素";
+
     /**
      * @return void
      * @Description 验证String不为null，且包含非空格字符
@@ -33,7 +38,6 @@ public class CustomValidator {
             throw new CustomException(exceptionTip);
         }
     }
-
 
     public static boolean checkStringNotEmpty(String param) {
         return StringUtils.hasText(param);
@@ -124,29 +128,20 @@ public class CustomValidator {
      */
 
     public static void checkMapNotEmpty(Map<?, ?> map, String exceptionTip) {
-
         if (!checkMapNotEmpty(map)) {
             throw new CustomException(exceptionTip);
         }
     }
-
     public static boolean checkMapNotEmpty(Map<?, ?> map) {
-
         return !(null == map||map.isEmpty() );
-
     }
-
     public static void checkMapNotNull(Map<?, ?> map, String exceptionTip) {
-
         if (!checkMapNotNull(map)) {
             throw new CustomException(exceptionTip);
         }
     }
-
     public static boolean checkMapNotNull(Map<?, ?> map) {
-
         return null!=map;
-
     }
 
     /**
@@ -158,33 +153,22 @@ public class CustomValidator {
      */
 
     public static void checkMethodParametersAllNotEmpty(String exceptionTip, Object... params) {
-
         final long fail = 0L;        // 验证失败标识
-
         final long success = 1L;     //验证成功标识
-
         List<Long> collect = Stream.of(params).map((param) -> {
-
             if (param instanceof String) {
                 return checkStringNotEmpty((String) param) ? success : fail;
-
             } else if (param instanceof Collection) {
                 return checkCollectionNotEmpty((Collection) param) ? success : fail;
-
             } else if (param instanceof Map) {
                 return checkMapNotEmpty((Map) param) ? success : fail;
-
             } else if (param instanceof Object[]) {
                 return checkArrayNotEmpty((Object[]) param) ? success : fail;
-
             } else {
                 return checkObjectNotNull(param) ? success : fail;
-
             }
         }).collect(Collectors.toList());
-
         if (collect.contains(fail)) {
-
             throw new CustomException(exceptionTip);
         }
     }
@@ -196,9 +180,7 @@ public class CustomValidator {
      * @Author yc
      */
     public static void checkMethodParametersAllNotNull(String exceptionTip,Object ...params){
-
         List<Object> collect = Stream.of(params).filter((p) -> null != p).collect(Collectors.toList());
-
         if(params.length!=collect.size()){
             throw new CustomException(exceptionTip);
         }

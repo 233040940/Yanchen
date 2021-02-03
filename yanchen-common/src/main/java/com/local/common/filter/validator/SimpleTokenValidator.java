@@ -13,7 +13,6 @@ public class SimpleTokenValidator extends AbstractTokenValidator {
 
     @Override
    public boolean tokenEffective(String token) {
-
         return JwtProvider.checkToken(token);
     }
 }

@@ -8,6 +8,5 @@ package com.local.common.enums;
  * @date 2020-06-15 13:04
  */
 public enum ResponseStatus {
-
     SUCCESS,ERROR
 }

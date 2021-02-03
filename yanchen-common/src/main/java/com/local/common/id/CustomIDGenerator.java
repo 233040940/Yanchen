@@ -8,8 +8,6 @@ package com.local.common.id;
  * @date 2020-06-08 22:35
  */
 public abstract class CustomIDGenerator<T> {
-
-
       protected abstract T createID();
 
       public T generateID() { return createID(); }

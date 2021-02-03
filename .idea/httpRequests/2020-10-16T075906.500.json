@@ -1,0 +1,1 @@
+{"timestamp":"2020-10-16T11:59:06.904+0000","status":500,"error":"Internal Server Error","message":"Target object must not be null; nested exception is java.lang.IllegalArgumentException: Target object must not be null","path":"/user"}

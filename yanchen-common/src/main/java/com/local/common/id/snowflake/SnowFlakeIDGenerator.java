@@ -4,7 +4,8 @@ package com.local.common.id.snowflake;
 import com.local.common.id.CustomIDGenerator;
 import com.local.common.utils.DateTimeHelper;
 
-/**雪花算法实现分布式id
+/**
+ * 雪花算法实现分布式id
  * Twitter_Snowflake
  * SnowFlake的结构如下(每部分用-分开):
  * 0 - 0000000000 0000000000 0000000000 0000000000 0 - 00000 - 00000 - 000000000000
@@ -17,7 +18,7 @@ import com.local.common.utils.DateTimeHelper;
  * SnowFlake的优点是，整体上按照时间自增排序，并且整个分布式系统内不会产生ID碰撞(由数据中心ID和机器ID作区分)，并且效率较高，经测试，SnowFlake每秒能够产生26万ID左右。
  */
 
-public class SnowFlakeIDGenerator  extends CustomIDGenerator<Long> {
+public class SnowFlakeIDGenerator<Long> extends CustomIDGenerator<java.lang.Long> {
 
     //开始时间戳
     private final long startTimeStamp = 1591286400000L;
@@ -74,7 +75,6 @@ public class SnowFlakeIDGenerator  extends CustomIDGenerator<Long> {
         this.workerId = workerId;
         this.dataCenterId = dataCenterId;
     }
-
     protected long tilNextMillis(long lastTimestamp) {
         long timestamp = currentTimeStamp();
         while (timestamp <= lastTimestamp) {
@@ -88,8 +88,7 @@ public class SnowFlakeIDGenerator  extends CustomIDGenerator<Long> {
     }
 
     @Override
-    protected synchronized Long createID() {
-
+    protected synchronized java.lang.Long createID() {
         long timestamp = currentTimeStamp();
         if (timestamp < lastTimestamp) {
             throw new RuntimeException(
@@ -104,14 +103,11 @@ public class SnowFlakeIDGenerator  extends CustomIDGenerator<Long> {
         } else {
             sequence = 0L;
         }
-
         lastTimestamp = timestamp;
-
-
-       return ((timestamp - startTimeStamp) << timestampLeftShift)
-               | (dataCenterId << dataCenterIdShift)
-               | (workerId << workerIdShift)
-               | sequence;
+        return ((timestamp - startTimeStamp) << timestampLeftShift)
+                | (dataCenterId << dataCenterIdShift)
+                | (workerId << workerIdShift)
+                | sequence;
     }
 
 

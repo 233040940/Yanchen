@@ -1,7 +1,9 @@
 package com.local.common.utils;
 
-import com.local.common.id.snowflake.SnowFlakeIDGenerator;
-import io.jsonwebtoken.*;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.util.Base64Utils;
 
 import javax.crypto.spec.SecretKeySpec;
@@ -18,8 +20,7 @@ import java.util.UUID;
 public class JwtProvider {
 
 
-    private JwtProvider(){
-
+    private JwtProvider() {
         throw new RuntimeException("JwtProvider is tool class,Not support instanced");
     }
 
@@ -43,14 +44,14 @@ public class JwtProvider {
     /**
      * 创建token
      *
-     * @param sub token所面向的用户
+     * @param sub    token所面向的用户
      * @param expire token有效时间
-     * @param aud 接收token的一方
-     * @param jti token的唯一身份标识，主要用来作为一次性token,从而回避重放攻击
-     * @param iss token签发者
+     * @param aud    接收token的一方
+     * @param jti    token的唯一身份标识，主要用来作为一次性token,从而回避重放攻击
+     * @param iss    token签发者
      * @return 加密后的token字符串
      */
-    public static String createToken(String sub, long expire,String aud, String jti, String iss) {
+    public static String createToken(String sub, long expire, String aud, String jti, String iss) {
         return Jwts.builder()
                 .signWith(JWT_ALG, generateKey())
                 .setSubject(sub)
@@ -64,23 +65,24 @@ public class JwtProvider {
     /**
      * 创建token
      *
-     * @param sub token所面向的用户
+     * @param sub    token所面向的用户
      * @param expire token有效时间
-     * @param aud 接收token的一方
+     * @param aud    接收token的一方
      * @return token 字符串
      */
-    public static String createToken(String sub, long expire,String aud) {
-        return createToken(sub,expire, aud, UUID.randomUUID().toString(), null);
+    public static String createToken(String sub, long expire, String aud) {
+        return createToken(sub, expire, aud, UUID.randomUUID().toString(), null);
     }
 
     /**
      * 创建token
+     *
      * @param expire token有效时间
-     * @param sub token所面向的用户
+     * @param sub    token所面向的用户
      * @return token字符串
      */
-    public static String createToken(String sub,long expire) {
-        return createToken(sub, expire,null);
+    public static String createToken(String sub, long expire) {
+        return createToken(sub, expire, null);
     }
 
     /**
@@ -91,7 +93,6 @@ public class JwtProvider {
      * @return Jws
      */
     public static Jws<Claims> parseToken(String token) {
-
         try {
             // 解析 token 字符串
             return Jwts.parser().setSigningKey(generateKey()).parseClaimsJws(token);
@@ -109,14 +110,11 @@ public class JwtProvider {
      * @return boolean
      */
     public static boolean checkToken(String token) {
-
         return !empty(parseToken(token));
-
     }
 
     private static boolean empty(Jws<Claims> jws) {
-
-        return jws == null?true:jws.getBody()==null;
+        return jws == null ? true : jws.getBody() == null;
     }
 
     /**
@@ -127,10 +125,9 @@ public class JwtProvider {
      * @return boolean
      */
     public static boolean checkToken(String token, String sub) {
-
         Jws<Claims> claimsJws = parseToken(token);
         try {
-            return empty(claimsJws)?false:claimsJws.getBody().getSubject().equals(sub);
+            return empty(claimsJws) ? false : claimsJws.getBody().getSubject().equals(sub);
         } catch (Exception e) {
             e.printStackTrace();
             return false;
@@ -146,10 +143,9 @@ public class JwtProvider {
      * @return boolean
      */
     public static boolean checkToken(String token, String sub, String iss) {
-
         Jws<Claims> claimsJws = parseToken(token);
         try {
-            return empty(claimsJws)?false:(claimsJws.getBody().getSubject().equals(sub)&&claimsJws.getBody().getIssuer().equals(iss));
+            return empty(claimsJws) ? false : (claimsJws.getBody().getSubject().equals(sub) && claimsJws.getBody().getIssuer().equals(iss));
         } catch (Exception e) {
             e.printStackTrace();
             return false;

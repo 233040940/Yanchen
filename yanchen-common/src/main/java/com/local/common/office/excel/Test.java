@@ -1,7 +1,6 @@
 package com.local.common.office.excel;
 
 import com.google.common.collect.Lists;
-import com.local.common.enums.ExcelSuffix;
 import com.local.common.office.excel.entity.Dept;
 
 import java.io.IOException;
@@ -18,7 +17,7 @@ public class Test {
 
 
     public static void main(String[] args) throws IllegalAccessException, NoSuchFieldException, IOException {
-        ExcelHelper<Dept> excelHelper = new SimplePoiHelper();
+        ExcelProvider<Dept> excelProvider = new SimplePoiProvider();
         String path = "/Users/yanchen/IdeaProjects/yanchen/common/src/main/java/com/local/common/office/excel";
         String excelName = "部门工资表";
         String sheetName = "IT部";
@@ -27,7 +26,7 @@ public class Test {
            depts.add(new Dept("yanchen","四川成都",10086,10000.2,new Date()));
        }
          depts.add(new Dept("李四","西安",10010,7000,new Date()));
-       boolean write = excelHelper.write(path, excelName, sheetName, Dept.class, ExcelSuffix.XLSX, depts);
+       boolean write = excelProvider.write(path, excelName, sheetName, Dept.class, ExcelProvider.ExcelSuffix.XLSX, depts);
        System.out.println(write);
 //        Collection<Dept> read = excelHelper.read(path, excelName, sheetName, Dept.class, ExcelSuffix.XLSX);
 //        int size = read.size();

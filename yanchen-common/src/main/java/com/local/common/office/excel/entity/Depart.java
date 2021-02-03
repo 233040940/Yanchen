@@ -1,6 +1,5 @@
 package com.local.common.office.excel.entity;
 
-import com.local.common.annotation.ExcelField;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,12 +27,9 @@ public class Depart implements ExcelTemplate{
     @Id
     private long id;
 
-    @ExcelField(title = "名字")
     private String name;
 
-    @ExcelField(title = "金额",order = 2)
     private Integer amount;
 
-    @ExcelField(title = "年龄",order = 3)
     private Integer age;
 }

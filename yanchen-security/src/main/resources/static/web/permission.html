@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>角色权限管理</title>
+    <link rel="stylesheet" type="text/css" href="js/layui/css/layui.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-card-header">
+            <div class="layui-row">
+                <div class="layui-col-lg12">
+                    <div class="layui-card">
+                        <div class="layui-card-header">
+                            <div class="layui-row">
+                                <div class="layui-col-lg1">
+                                    <div class="layui-inline">
+                                        <button type="button" class="layui-btn layui-btn-radius layui-btn-sm"
+                                                onclick="click_add_role_permission()"><i class=" layui-icon layui-icon-add-1 "></i>权限配置
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="layui-col-lg-offset10">
+                                    <div class="layui-btn-group" style="padding-left: 30px;">
+                                        <button type="button" class="layui-btn layui-btn-radius layui-btn-sm"
+                                                onclick="click_edit_permission()"><i
+                                                class=" layui-icon layui-icon-add-1"></i>编辑权限
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="layui-card-body" >
+
+            <div class="layui-table" id="permissions" lay-filter="permissions">
+
+            </div>
+        </div>
+
+        <div style="display: none" id="hide_click_add_role_permission_div">
+            <form class="layui-form" >
+                <div class="layui-form-item">
+                    <label class="layui-form-label">角色:</label>
+                    <div class="layui-input-block">
+                        <select name="select_roles" id="select_roles" lay-verify="required">
+                            <option value="">请选择角色</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">导航菜单:</label>
+                    <div class="layui-input-block" id="add_select_nav_menus">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">功能菜单:</label>
+                    <div class="layui-input-block" id="add_select_operation_menus">
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div style="display: none" id="hide_click_edit_permission_div">
+            <form class="layui-form">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">操作类型:</label>
+                    <div class="layui-input-block">
+                        <select name="select_operation_type" lay-verify="required" lay-filter="select_operation_type">
+                            <option value="">请选择操作类型</option>
+                            <option value="INSERT">新增</option>
+                            <option value="DELETE">删除</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">导航菜单:</label>
+                    <div class="layui-input-block" id="edit_navigate_menus">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">功能菜单:</label>
+                    <div class="layui-input-block" id="edit_operation_menus">
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="layui-footer">
+    <!-- 底部固定区域 -->
+
+</div>
+<script src="js/layui/layui.all.js"></script>
+<script src="js/common.js"></script>
+<script src="js/permission.js"></script>
+</body>
+</html>

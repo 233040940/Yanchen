@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>角色管理</title>
+    <link rel="stylesheet" type="text/css" href="js/layui/css/layui.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+</head>
+<body>
+    <div class="layui-fluid">
+        <div class="layui-card">
+            <div class="layui-card-header">
+                <div class="layui-row">
+                    <div class="layui-col-lg12">
+                        <div class="layui-card">
+                            <div class="layui-card-header">
+                                <div class="layui-row">
+                                    <div class="layui-col-lg1">
+                                        <div class="layui-inline">
+                                            <button type="button" class="layui-btn layui-btn-radius layui-btn-sm"
+                                                    onclick="click_add_role()"><i class=" layui-icon layui-icon-add-1 "></i>新增角色
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="layui-col-lg-offset10">
+                                        <div class="layui-btn-group" style="padding-left: 30px;">
+                                            <button type="button" class="layui-btn layui-btn-radius layui-btn-sm"
+                                                    onclick="click_config_user()"><i
+                                                    class=" layui-icon layui-icon-add-1"></i>设置用户角色
+                                            </button>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="layui-card-body" >
+
+                <div class="layui-table" id="roles" lay-filter="roles">
+
+                </div>
+            </div>
+
+            <div style="display: none" id="hide_click_add_role_div">
+                    <form class="layui-form" >
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">角色Code:</label>
+                            <div class="layui-input-block">
+                                <input type="text" id="code" required  lay-verify="required" placeholder="形如:ADMIN,SUPER_ADMIN,USER..." autocomplete="off" class="layui-input" value="">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">描述:</label>
+                            <div class="layui-input-block">
+                                <input type="text" id="note" required  lay-verify="required" placeholder="形如:管理员,超级管理员,普通用户..." autocomplete="off" class="layui-input" value="">
+                            </div>
+                        </div>
+                    </form>
+            </div>
+
+            <div style="display: none" id="hide_click_config_user_div">
+                <form class="layui-form" >
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">账号:</label>
+                        <div class="layui-input-block">
+                            <input type="text" id="account" required  lay-verify="required" placeholder="合法账号" autocomplete="off" class="layui-input" value="">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+
+    </div>
+<script src="js/layui/layui.all.js"></script>
+<script src="js/common.js"></script>
+<script src="js/role.js"></script>
+</body>
+</html>

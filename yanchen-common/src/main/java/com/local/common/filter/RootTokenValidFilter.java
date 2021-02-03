@@ -38,7 +38,6 @@ public class RootTokenValidFilter implements Filter {
     private Set<String> excludeStaticResources;        //排除静态资源后缀集合
 
     public RootTokenValidFilter(Set<UrlMatcher> excludeUrls,Set<String> excludeStaticResources, AbstractTokenValidator tokenValidator) {
-
         this.excludeUrls = Optional.ofNullable(excludeUrls).orElse(Sets.newHashSetWithExpectedSize(0));
         this.tokenValidator = tokenValidator;
         this.excludeStaticResources=Optional.ofNullable(excludeStaticResources).orElse(Sets.newHashSetWithExpectedSize(0));

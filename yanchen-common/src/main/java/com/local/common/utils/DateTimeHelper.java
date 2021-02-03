@@ -6,155 +6,129 @@ import java.util.Date;
 
 /**
  * @author yc
- * @description TODO  时间日期工具类
+ * @description   时间日期工具类
  * @date 2020-05-21 15:09
  */
 public class DateTimeHelper {
 
-    private DateTimeHelper(){
-
+    private DateTimeHelper() {
         throw new RuntimeException("DateTimeHelper not support instantiated");
     }
 
-    enum DateTimePattern{
-
+    enum DateTimePattern {
         /**
-          * @Description  标准日期时间格式
-          */
-
+         * @Description 标准日期时间格式
+         */
         STANDARD_DATETIME_FORMAT("yyyy-MM-dd HH:mm:ss");
 
         private String pattern;
 
-        DateTimePattern(String pattern){
-
-            this.pattern=pattern;
+        DateTimePattern(String pattern) {
+            this.pattern = pattern;
         }
     }
 
     /**
-      * @Description 获取系统当前时间戳(秒)级
-      * @return long  系统时间戳
-      * @Author yc
-      */
-
-    public static final long getSystemTimeStampToSecnnds(){
-
+     * @return long  系统时间戳
+     * @Description 获取系统当前时间戳(秒)级
+     * @Author yc
+     */
+    public static final long getSystemTimeStampToSeconds() {
         return LocalDateTime.now().toEpochSecond(ZoneOffset.of("+8"));
     }
 
     /**
-      * @Description 获取系统当前时间戳(毫秒）级
-      * @return long 系统时间戳
-      * @Author yc
-      */
-
-    public static final long getSystemTimeStampToMillis(){
-
+     * @return long 系统时间戳
+     * @Description 获取系统当前时间戳(毫秒 ） 级
+     * @Author yc
+     */
+    public static final long getSystemTimeStampToMillis() {
         return LocalDateTime.now().toInstant(ZoneOffset.of("+8")).toEpochMilli();
     }
 
-
     /**
-      * @Description 日期时间字符串转时间戳(毫秒级)
-      * @Param [dateTime] 日期时间字符串
-      * @return long
-      * @Author yc
-      */
-
-    public static final long stringConvertTimeStampToMills(final String dateTime){
-
-        return stringConvertTimeStampToMills(DateTimePattern.STANDARD_DATETIME_FORMAT.pattern,dateTime);
+     * @return long
+     * @Description 日期时间字符串转时间戳(毫秒级)
+     * @Param [dateTime] 日期时间字符串
+     * @Author yc
+     */
+    public static final long stringConvertToTimeStampToMills(final String dateTime) {
+        return stringConvertToTimeStampToMills(DateTimePattern.STANDARD_DATETIME_FORMAT.pattern, dateTime);
     }
 
-    public static final long stringConvertTimeStampToMills(final String pattern,final String dateTime){
-
-      return   LocalDateTime.from(LocalDateTime.parse(dateTime,DateTimeFormatter.ofPattern(pattern))).atZone(ZoneOffset.of("+8")).toInstant().toEpochMilli();
+    public static final long stringConvertToTimeStampToMills(final String pattern, final String dateTime) {
+        return LocalDateTime.from(LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern(pattern))).atZone(ZoneOffset.of("+8")).toInstant().toEpochMilli();
     }
 
     /**
-      * @Description 转换（毫秒级）时间戳到（标准时间格式）字符串
-      * @Param [timeStamp] (毫秒级)时间戳
-      * @return java.lang.String
-      * @Author yc
-      */
-
-    public static  final String millsTimeStampConvertStringDateTime(final long timeStamp){
-
-        return millsTimeStampConvertStringDateTime(DateTimePattern.STANDARD_DATETIME_FORMAT.pattern,timeStamp);
+     * @return java.lang.String
+     * @Description 转换（毫秒级）时间戳到（标准时间格式）字符串
+     * @Param [timeStamp] (毫秒级)时间戳
+     * @Author yc
+     */
+    public static final String millsTimeStampConvertToStringDateTime(final long timeStamp) {
+        return millsTimeStampConvertToStringDateTime(DateTimePattern.STANDARD_DATETIME_FORMAT.pattern, timeStamp);
     }
 
     /**
-      * @Description  转换（毫秒级）时间戳到（指定时间格式）字符串
-      * @Param [pattern 日期时间指定格式, timeStamp 毫秒级时间戳]
-      * @return java.lang.String
-      * @Author yc
-      */
-
-    public static final String millsTimeStampConvertStringDateTime(final String pattern,final long timeStamp){
-
-        return DateTimeFormatter.ofPattern(pattern).format(LocalDateTime.ofInstant(Instant.ofEpochMilli(timeStamp),ZoneOffset.of("+8")));
-    }
-
-
-    /**
-      * @Description 转换(秒级)时间戳到(标准时间格式)字符串
-      * @Param [timeStamp （秒级）时间戳]
-      * @return java.lang.String
-      * @Author yc
-      */
-
-    public static final String secondsTimeStampConvertStringDateTime(final long timeStamp){
-
-        return secondsTimeStampConvertStringDateTime(DateTimePattern.STANDARD_DATETIME_FORMAT.pattern,timeStamp);
+     * @return java.lang.String
+     * @Description 转换（毫秒级）时间戳到（指定时间格式）字符串
+     * @Param [pattern 日期时间指定格式, timeStamp 毫秒级时间戳]
+     * @Author yc
+     */
+    public static final String millsTimeStampConvertToStringDateTime(final String pattern, final long timeStamp) {
+        return DateTimeFormatter.ofPattern(pattern).format(LocalDateTime.ofInstant(Instant.ofEpochMilli(timeStamp), ZoneOffset.of("+8")));
     }
 
     /**
-      * @Description 转换（秒级）时间戳到（指定日期时间格式）字符串
-      * @Param [pattern 日期时间指定格式, timeStamp 秒级时间戳]
-      * @return java.lang.String
-      * @Author yc
-      */
-
-    public static  final String secondsTimeStampConvertStringDateTime(final String pattern,final long timeStamp){
-
-
-        return DateTimeFormatter.ofPattern(pattern).format(LocalDateTime.ofInstant(Instant.ofEpochSecond(timeStamp),ZoneOffset.of("+8")));
+     * @return java.lang.String
+     * @Description 转换(秒级)时间戳到(标准时间格式)字符串
+     * @Param [timeStamp （秒级）时间戳]
+     * @Author yc
+     */
+    public static final String secondsTimeStampConvertToStringDateTime(final long timeStamp) {
+        return secondsTimeStampConvertToStringDateTime(DateTimePattern.STANDARD_DATETIME_FORMAT.pattern, timeStamp);
     }
 
-/**
-  * @Description Date转String
-  * @Param [date]
-  * @return java.lang.String
-  * @Author yc
-  * @Date 2020-06-20 18:41
-  * @version 1.0
-  */
-
-    public static  final String dateToConvertString(final Date date){
-
-        return dateToConvertString(date,DateTimePattern.STANDARD_DATETIME_FORMAT.pattern);
+    /**
+     * @return java.lang.String
+     * @Description 转换（秒级）时间戳到（指定日期时间格式）字符串
+     * @Param [pattern 日期时间指定格式, timeStamp 秒级时间戳]
+     * @Author yc
+     */
+    public static final String secondsTimeStampConvertToStringDateTime(final String pattern, final long timeStamp) {
+        return DateTimeFormatter.ofPattern(pattern).format(LocalDateTime.ofInstant(Instant.ofEpochSecond(timeStamp), ZoneOffset.of("+8")));
     }
 
-    public static  final String dateToConvertString(final Date date,final  String pattern){
-
-        return DateTimeFormatter.ofPattern(pattern).format(LocalDateTime.ofInstant(date.toInstant(),ZoneOffset.of("+8")));
+    /**
+     * @return java.lang.String
+     * @Description Date转String
+     * @Param [date]
+     * @Author yc
+     * @Date 2020-06-20 18:41
+     * @version 1.0
+     */
+    public static final String dateConvertToString(final Date date) {
+        return dateConvertToString(date, DateTimePattern.STANDARD_DATETIME_FORMAT.pattern);
     }
 
-    public static  final Date stringToConvertDate(final String date){
-        return stringToConvertDate(date,DateTimePattern.STANDARD_DATETIME_FORMAT.pattern);
+    public static final String dateConvertToString(final Date date, final String pattern) {
+        return DateTimeFormatter.ofPattern(pattern).format(LocalDateTime.ofInstant(date.toInstant(), ZoneOffset.of("+8")));
     }
 
-    public static  final Date stringToConvertDate(final String date,final String pattern){
-
-        return Date.from(stringToConvertLocalDateTime(date, pattern).atZone(ZoneId.systemDefault()).toInstant());
+    public static final Date stringConvertToDate(final String date) {
+        return stringConvertToDate(date, DateTimePattern.STANDARD_DATETIME_FORMAT.pattern);
     }
 
-    public static final LocalDateTime   stringToConvertLocalDateTime(final String date){
-        return stringToConvertLocalDateTime(date,DateTimePattern.STANDARD_DATETIME_FORMAT.pattern);
+    public static final Date stringConvertToDate(final String date, final String pattern) {
+        return Date.from(stringConvertToLocalDateTime(date, pattern).atZone(ZoneId.systemDefault()).toInstant());
     }
 
-    public static final LocalDateTime   stringToConvertLocalDateTime(final String date,final String pattern){
+    public static final LocalDateTime stringConvertToLocalDateTime(final String date) {
+        return stringConvertToLocalDateTime(date, DateTimePattern.STANDARD_DATETIME_FORMAT.pattern);
+    }
+
+    public static final LocalDateTime stringConvertToLocalDateTime(final String date, final String pattern) {
         return LocalDateTime.parse(date, DateTimeFormatter.ofPattern(pattern));
     }
 }

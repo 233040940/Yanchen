@@ -3,7 +3,6 @@ package com.local.common.utils;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
@@ -15,17 +14,13 @@ import java.util.Map;
  * @date 2020-05-26 17:35
  */
 
-@Component
 public class ApplicationContextProvider implements ApplicationContextAware {
-
 
     private static ApplicationContext applicationContext;
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-
         ApplicationContextProvider.applicationContext = applicationContext;
-
     }
 
     /**
@@ -36,7 +31,6 @@ public class ApplicationContextProvider implements ApplicationContextAware {
      */
 
     public static final <T> T getBean(Class<T> beanType) throws BeansException {
-
         return applicationContext.getBean(beanType);
     }
 
@@ -49,13 +43,9 @@ public class ApplicationContextProvider implements ApplicationContextAware {
      */
 
     public static final Object getBean(String beanName) throws BeansException {
-
         return applicationContext.getBean(beanName);
     }
-
-
     public  static  final <T> T getBean(String beanName,Class<T> beanType)throws BeansException{
-
         return applicationContext.getBean(beanName,beanType);
     }
     /**
@@ -68,8 +58,6 @@ public class ApplicationContextProvider implements ApplicationContextAware {
      */
 
     public static final <T> Map<String,T> getBeans(Class<T> beanType) throws BeansException{
-
         return applicationContext.getBeansOfType(beanType);
     }
-
     }

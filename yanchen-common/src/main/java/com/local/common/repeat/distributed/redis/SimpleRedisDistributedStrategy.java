@@ -21,7 +21,6 @@ public class SimpleRedisDistributedStrategy extends DistributedStrategy {
     private RedisTemplateHelper redisTemplateHelper;
 
     public SimpleRedisDistributedStrategy(CustomCacheManager customCacheManager){
-
         this.customCacheManager = customCacheManager;
         this.setRedisTemplateHelper(initRedisTemplateHelper());
     }

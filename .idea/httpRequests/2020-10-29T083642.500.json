@@ -1,0 +1,1 @@
+{"timestamp":"2020-10-29T12:36:42.047+0000","status":500,"error":"Internal Server Error","message":"could not execute statement; nested exception is org.hibernate.exception.GenericJDBCException: could not execute statement","path":"/user"}

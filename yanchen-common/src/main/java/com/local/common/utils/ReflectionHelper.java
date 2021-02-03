@@ -16,7 +16,6 @@ public class ReflectionHelper {
 
 
     private ReflectionHelper() {
-
         throw new RuntimeException("ReflectionHelper is tool class,Not support instanced");
     }
     /**
@@ -27,11 +26,8 @@ public class ReflectionHelper {
      * @return: java.util.List<java.lang.reflect.Field>
      */
     public static <T, A extends Annotation> List<Field> findFieldsOnAnnotation(Class<T> tClass, Class<A> annotationClass) {
-
         Field[] declaredFields = tClass.getDeclaredFields();
-
         return Stream.of(declaredFields).filter((f) -> {
-
             A s = f.getAnnotation(annotationClass);
             return s != null;
         }).collect(Collectors.toList());
@@ -44,7 +40,6 @@ public class ReflectionHelper {
      * @return: java.util.List<java.lang.reflect.Field>
      */
     public static <T> List<Field> findFields(T t) {
-
         return Stream.of(t.getClass().getDeclaredFields()).collect(Collectors.toList());
     }
 
@@ -67,7 +62,6 @@ public class ReflectionHelper {
      * @return: java.lang.annotation.Annotation[]
      */
     public static Annotation[] findAnnotationsOnField(Field field) {
-
         return field.getDeclaredAnnotations();
     }
 

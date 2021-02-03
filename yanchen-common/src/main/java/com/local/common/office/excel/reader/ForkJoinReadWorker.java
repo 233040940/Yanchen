@@ -1,6 +1,6 @@
 package com.local.common.office.excel.reader;
 
-import com.local.common.office.excel.PoiExcelHelper;
+import com.local.common.office.excel.PoiExcelProvider;
 import org.apache.commons.lang3.tuple.Triple;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -42,9 +42,7 @@ public class ForkJoinReadWorker extends RecursiveTask<Collection> {
 
     @Override
     protected Collection compute() {
-
         List result = new ArrayList(READ_MAX_ROW);
-
         try {
             boolean canCompute = (end - start) <= READ_MAX_ROW;
             if (canCompute) {
@@ -54,26 +52,19 @@ public class ForkJoinReadWorker extends RecursiveTask<Collection> {
                     for (Triple<Field, Integer, ? extends Class<?>> triple : triples) {
                         final int defaultOrder = 1;
                         Cell cell = row.getCell(triple.getMiddle() - defaultOrder);
-                        PoiExcelHelper.setExcelTemplateFieldValue(t, cell, triple.getLeft(), triple.getRight());
+                        PoiExcelProvider.setExcelTemplateFieldValue(t, cell, triple.getLeft(), triple.getRight());
                     }
-
                     result.add(t);
                 }
             } else {
-
                 int middle = (end + start) / 2;
-
                 ForkJoinReadWorker first = new ForkJoinReadWorker(start, middle, sheet, excelTemplate, triples);
                 ForkJoinReadWorker seconds = new ForkJoinReadWorker(middle, end, sheet, excelTemplate, triples);
-
                 first.fork();
                 seconds.fork();
-
                 Collection join = first.join();
                 Collection join1 = seconds.join();
-
                 result.addAll(join);
-
                 result.addAll(join1);
             }
         } catch (InstantiationException | IllegalAccessException e) {

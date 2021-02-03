@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="51180b4c-ed66-47c5-acae-7e70d526ed53" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/utils/IPHelper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/utils/VerifyCodeHelper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/SecurityApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/common/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/component/CustomAccessDeniedHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/component/CustomAuthenticationFailureHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/component/CustomAuthenticationSuccessHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/component/CustomPasswordEncoder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/component/CustomPermissionChecker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/component/CustomUserDetail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/component/CustomUserDetailsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/component/CustomUserNamePasswordAuthenticationFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/component/JwtAuthenticationFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/component/PermissionFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/config/CustomConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/controller/AccountController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/controller/MenuController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/controller/PermissionController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/controller/RoleController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/controller/Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/entity/Account.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/entity/AccountDetail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/entity/GoodsOrder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/entity/MataEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/entity/Menu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/entity/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/entity/SysPermission.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/entity/SysUserRole.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/entity/dto/EditPermissionConfigDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/entity/dto/LoginDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/entity/dto/PermissionConfigDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/entity/dto/UserRoleConfigDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/entity/vo/AccountOrderVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/entity/vo/PermissionPageVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/enums/MenuSource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/enums/OperationSource.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/enums/RoleType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/event/AccountEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/repository/AccountDetailRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/repository/AccountRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/repository/MenuRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/repository/OrderRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/repository/RoleRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/repository/SysPermissionRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/repository/SysUserRoleRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/service/AccountDetailService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/service/AccountService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/service/GoodsOrderService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/service/MenuService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/service/RoleService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/service/SysPermissionService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/service/SysUserRoleService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/service/impl/AccountDetailServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/service/impl/AccountServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/service/impl/GoodsOrderServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/service/impl/MenuServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/service/impl/RoleServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/service/impl/SysPermissionServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/security/service/impl/SysUserRoleServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/account.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/account.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/auth.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/common.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/jquery.cookie.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/jquery.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/css/layui.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/css/layui.mobile.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/css/modules/code.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/css/modules/laydate/default/laydate.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/css/modules/layer/default/icon-ext.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/css/modules/layer/default/icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/css/modules/layer/default/layer.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/css/modules/layer/default/loading-0.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/css/modules/layer/default/loading-1.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/css/modules/layer/default/loading-2.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/font/iconfont.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/font/iconfont.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/font/iconfont.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/font/iconfont.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/font/iconfont.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/0.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/1.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/10.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/11.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/12.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/13.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/14.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/15.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/16.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/17.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/18.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/19.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/2.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/20.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/21.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/22.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/23.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/24.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/25.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/26.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/27.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/28.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/29.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/3.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/30.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/31.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/32.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/33.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/34.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/35.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/36.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/37.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/38.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/39.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/4.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/40.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/41.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/42.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/43.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/44.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/45.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/46.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/47.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/48.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/49.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/5.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/50.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/51.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/52.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/53.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/54.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/55.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/56.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/57.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/58.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/59.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/6.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/60.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/61.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/62.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/63.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/64.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/65.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/66.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/67.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/68.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/69.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/7.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/70.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/71.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/8.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/images/face/9.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/lay/modules/carousel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/lay/modules/code.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/lay/modules/colorpicker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/lay/modules/element.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/lay/modules/flow.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/lay/modules/form.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/lay/modules/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/lay/modules/laydate.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/lay/modules/layedit.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/lay/modules/layer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/lay/modules/laypage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/lay/modules/laytpl.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/lay/modules/mobile.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/lay/modules/rate.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/lay/modules/slider.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/lay/modules/table.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/lay/modules/transfer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/lay/modules/tree.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/lay/modules/upload.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/lay/modules/util.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/layui.all.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/layui/layui.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/login.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/menu.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/permission.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/js/role.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/menu.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/permission.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/web/role.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/local/security/service/impl/MenuServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/dataSources/abc805a0-1d9f-494e-9d80-c4c362c9bf23.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/dataSources/abc805a0-1d9f-494e-9d80-c4c362c9bf23.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../yanchen-common/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/../yanchen-common/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../yanchen-common/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../yanchen-common/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/CustomConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/SystemConstant.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/aspect/InterfaceRateLimitAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/aspect/InterfaceRateLimitAspect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/entity/ResultResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/entity/ResultResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/entity/UrlMatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/entity/UrlMatcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/enums/ResponseCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/enums/ResponseCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/enums/ResponseStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/enums/ResponseStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/exception/CustomException.java" beforeDir="false" afterPath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/exception/CustomException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/filter/RootTokenValidFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/filter/RootTokenValidFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/id/CustomIDGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/id/CustomIDGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/id/snowflake/SnowFlakeIDGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/id/snowflake/SnowFlakeIDGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/repeat/distributed/redis/SimpleRedisDistributedStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/repeat/distributed/redis/SimpleRedisDistributedStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/repository/BaseJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/jpa/BaseJpaRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/utils/ApplicationContextProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/utils/ApplicationContextProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/utils/BeanCopyHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/utils/BeanCopyHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/utils/CryptoHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/utils/CryptoHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/utils/CustomValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/utils/CustomValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/utils/DateTimeHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/utils/DateTimeHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/utils/FileHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/utils/FileHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/utils/IntHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/utils/IntHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/utils/JsonHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/utils/JsonHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/utils/JwtProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/utils/JwtProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/utils/RandomHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/utils/RandomHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/utils/RedisTemplateHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/utils/RedisTemplateHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/utils/ReflectionHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/utils/ReflectionHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/utils/SplitterHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/../yanchen-common/src/main/java/com/local/common/utils/SplitterHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../yanchen-common/src/test/java/com/local/common/CommonApplicationTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../yanchen-netty-server/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/../yanchen-netty-server/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../yanchen-netty-server/src/test/java/com/local/nettyserver/NettyServerApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../yanchen-shiro/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../yanchen-shiro/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../yanchen-shiro/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1nAVuq7a4X1HNF8GoiwlQxK5K6k" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="51180b4c-ed66-47c5-acae-7e70d526ed53" name="Default Changelist" comment="" />
+      <created>1610833110191</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1610833110191</updated>
+      <workItem from="1610833111889" duration="11000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

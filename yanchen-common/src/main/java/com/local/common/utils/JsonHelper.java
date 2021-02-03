@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 
 /**
@@ -16,11 +17,8 @@ import java.util.*;
  */
 public class JsonHelper {
 
-
     private static final ObjectMapper MAPPER;
-
     static {
-
         MAPPER = new ObjectMapper();
         //设置序列化规则，不包含null值
         MAPPER.setSerializationInclusion(JsonInclude.Include.NON_NULL);
@@ -31,75 +29,53 @@ public class JsonHelper {
 
     }
 
-
     private JsonHelper() {
-
         throw new RuntimeException("JsonHelper is tool class, Not support instantiated");
     }
-
 
     enum JSONValueBaseType {
 
         STRING() {
             @Override
             Object getJsonNodeValue(final String json, final String nodeName) throws IOException {
-
                 JsonNode jsonNode = MAPPER.readTree(json);
-
                 return jsonNode.findValue(nodeName).asText();
             }
         },
-
         LONG() {
             @Override
             Object getJsonNodeValue(final String json, final String nodeName) throws IOException {
-
                 JsonNode jsonNode = MAPPER.readTree(json);
-
                 return jsonNode.findValue(nodeName).asLong();
             }
         },
-
-
         INTEGER() {
             @Override
             Object getJsonNodeValue(final String json, final String nodeName) throws IOException {
-
                 JsonNode jsonNode = MAPPER.readTree(json);
-
                 return jsonNode.findValue(nodeName).asInt();
             }
         },
-
-
         BOOLEAN() {
             @Override
             Object getJsonNodeValue(final String json, final String nodeName) throws IOException {
-
                 JsonNode jsonNode = MAPPER.readTree(json);
-
                 return jsonNode.findValue(nodeName).asBoolean();
             }
         },
-
-
         DOUBLE() {
             @Override
             Object getJsonNodeValue(final String json, final String nodeName) throws IOException {
                 JsonNode jsonNode = MAPPER.readTree(json);
-
                 return jsonNode.findValue(nodeName).asDouble();
             }
         },
-
         LIST() {
             @Override
             Object getJsonNodeValue(final String json, final String nodeName) throws IOException {
-
                 return MAPPER.readTree(json).findPath(nodeName).toString();
             }
         };
-
         abstract Object getJsonNodeValue(final String json, final String nodeName) throws IOException;
     }
 
@@ -112,7 +88,6 @@ public class JsonHelper {
      */
 
     public static <T> T deSerialize(final String json, final Class<T> targetClass) throws IOException {
-
         return MAPPER.readValue(json, targetClass);
     }
 
@@ -126,7 +101,6 @@ public class JsonHelper {
      */
 
     public static String serialize(final Object target) throws JsonProcessingException {
-
         return MAPPER.writeValueAsString(target);
     }
 
@@ -139,9 +113,7 @@ public class JsonHelper {
      */
 
     public static Object getJsonNodeValue(final String json, final String nodeName, final JSONValueBaseType valueType) throws IOException {
-
         return valueType.getJsonNodeValue(json, nodeName);
-
     }
 
     /**
@@ -154,7 +126,6 @@ public class JsonHelper {
      */
 
     public static String getJsonNodeValue(final String json, final String nodeName) throws IOException {
-
         return MAPPER.readTree(json).findValue(nodeName).toString();
     }
 
@@ -169,9 +140,7 @@ public class JsonHelper {
 
 
     public static String getJsonNodeValue(final String json, final String parentNode, final String nodeName) throws IOException {
-
         JsonNode jsonNode = MAPPER.readTree(json).findPath(parentNode);
-
         return getJsonNodeValue(jsonNode.toString(), nodeName);
     }
 
@@ -185,7 +154,6 @@ public class JsonHelper {
      */
 
     public static <T> List<T> deSerializeToList(final String json, Class<T> tClass) throws IOException {
-
         return MAPPER.readValue(json, new TypeReference<List<T>>() {
         });
     }
@@ -199,7 +167,6 @@ public class JsonHelper {
      */
 
     public static <T> Map<String, T> deSerializeToMap(final String json, Class<T> tClass) throws IOException {
-
         return MAPPER.readValue(json, new TypeReference<Map<String, T>>() {
         });
     }
@@ -212,9 +179,7 @@ public class JsonHelper {
      */
 
     public static <T> T jsonNodeConvertObject(final String json, final String nodeName, Class<T> tClass) throws IOException {
-
         JsonNode jsonNode = MAPPER.readTree(json).findPath(nodeName);
-
         return deSerialize(jsonNode.toString(), tClass);
     }
 
@@ -226,10 +191,18 @@ public class JsonHelper {
      */
 
     public static <T> List<T> jsonNodeConvertList(final String json, final String nodeName, Class<T> tClass) throws IOException {
-
         JsonNode jsonNode = MAPPER.readTree(json).findPath(nodeName);
-
         return deSerializeToList(jsonNode.toString(), tClass);
     }
 
+    /**
+     * @create-by: yanchen 2021/1/14 22:20
+     * @description: 将指定输入流反序列到对象
+     * @param stream
+     * @param tClass  
+     * @return: T
+     */
+    public static <T> T deSerializable(final InputStream stream,Class<T> tClass) throws IOException {
+     return MAPPER.readValue(stream, tClass);
+    }
 }

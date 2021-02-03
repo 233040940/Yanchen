@@ -29,7 +29,6 @@ public class FileHelper {
     private static final Charset CHARSET = Charsets.UTF_8;
 
     private FileHelper() {
-
         throw new RuntimeException("FileHelper is tool class,Not support instanced");
     }
 
@@ -203,8 +202,8 @@ public class FileHelper {
             return hash.equals(hash1);
         } catch (IOException e) {
             e.printStackTrace();
-            return false;
         }
+        return false;
     }
 
 

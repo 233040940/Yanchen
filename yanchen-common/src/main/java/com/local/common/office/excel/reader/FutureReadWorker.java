@@ -1,7 +1,7 @@
 package com.local.common.office.excel.reader;
 
 import com.google.common.collect.Lists;
-import com.local.common.office.excel.PoiExcelHelper;
+import com.local.common.office.excel.PoiExcelProvider;
 import org.apache.commons.lang3.tuple.Triple;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -47,7 +47,7 @@ public class FutureReadWorker implements Callable<Collection> {
             for (Triple<Field, Integer, ? extends Class<?>> triple : triples) {
                 final int defaultOrder = 1;
                 Cell cell = row.getCell(triple.getMiddle() - defaultOrder);
-                PoiExcelHelper.setExcelTemplateFieldValue(t, cell, triple.getLeft(), triple.getRight());
+                PoiExcelProvider.setExcelTemplateFieldValue(t, cell, triple.getLeft(), triple.getRight());
             }
             result.add(t);
         }
