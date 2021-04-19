@@ -1,5 +1,7 @@
 package com.local.security.controller;
 
+import com.local.security.entity.Account;
+import com.local.security.entity.Menu;
 import lombok.Data;
 
 /**
@@ -9,8 +11,23 @@ import lombok.Data;
 @Data
 public class Test {
 
-    private int page;
-    private int limit;
-    private String name;
-    private int age;
+   private Account account;
+   private Menu menu;
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    public Menu getMenu() {
+        return menu;
+    }
+
+    public void setMenu(Menu menu) {
+        this.menu = menu;
+    }
+
 }

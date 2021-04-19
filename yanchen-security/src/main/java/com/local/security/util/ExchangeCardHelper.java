@@ -63,14 +63,15 @@ public class ExchangeCardHelper {
 
 
     /**
+     * @param count      个数
+     * @param cardSource 兑换卡类型
      * @create-by: yanchen 2021/1/27 22:10
      * @description: 生成兑换卡
-     * @param count 个数
-     * @param cardSource 兑换卡类型
-     * @return: java.util.Set<com.local.security.util.ExchangeCardHelper.CardPair<java.lang.String,java.lang.String>>
+     * @return: java.util.Set<com.local.security.util.ExchangeCardHelper.CardPair < java.lang.String, java.lang.String>>
      */
     public static Set<CardPair<String, String>> create(int count, CardSource cardSource) {
-        if(count <1){
+        final  int minCount=1;
+        if (count < minCount) {
             throw new IllegalArgumentException("生成个数不能小于1");
         }
         return generate(count, cardSource.prefix);
@@ -100,18 +101,18 @@ public class ExchangeCardHelper {
     }
 
     //递归生成有效的兑换卡
-    private static Set<CardPair<String, String>> createEffectiveCard(Set<String> unCheckedCardNumbers, int finalCount, CardSource cardSource, Set<CardPair<String, String>> unCheckedCards, Set<CardPair<String, String>> effectiveCards) {
-        if (effectiveCards.size() == finalCount) {
+    private static Set<CardPair<String, String>> createEffectiveCard(int finalCardCount, CardSource cardSource, Set<CardPair<String, String>> unCheckedCards, Set<CardPair<String, String>> effectiveCards) {
+        if (effectiveCards.size() == finalCardCount) {
             return effectiveCards;
         } else {
+            final Set<String> unCheckedCardNumbers = unCheckedCards.stream().map((CardPair::getLeft)).collect(Collectors.toSet());
             List<ExchangeCard> database = findDatabase(unCheckedCardNumbers);
             if (!database.isEmpty()) {
-                Set<String> inEffectiveCardNumbers = database.stream().map(ExchangeCard::getCardNo).collect(Collectors.toSet());
-                Set<CardPair<String, String>> checkedCards = unCheckedCards.stream().filter((p) -> !inEffectiveCardNumbers.contains(p.getLeft())).collect(Collectors.toSet());
-                Set<CardPair<String, String>> newUncheckedCards = ExchangeCardHelper.create(finalCount - checkedCards.size(), cardSource);
-                Set<String> newUnCheckedCardNumbers = newUncheckedCards.stream().map(CardPair::getLeft).collect(Collectors.toSet());
+                final Set<String> inEffectiveCardNumbers = database.stream().map(ExchangeCard::getCardNo).collect(Collectors.toSet());
+                final Set<CardPair<String, String>> checkedCards = unCheckedCards.stream().filter((p) -> !inEffectiveCardNumbers.contains(p.getLeft())).collect(Collectors.toSet());
+                final Set<CardPair<String, String>> newUncheckedCards = ExchangeCardHelper.create(finalCardCount - checkedCards.size(), cardSource);
                 effectiveCards.addAll(checkedCards);
-                createEffectiveCard(newUnCheckedCardNumbers, finalCount, cardSource, newUncheckedCards, effectiveCards);
+                createEffectiveCard(finalCardCount, cardSource, newUncheckedCards, effectiveCards);
             } else {
                 effectiveCards.addAll(unCheckedCards);
             }
@@ -120,13 +121,13 @@ public class ExchangeCardHelper {
     }
 
     public static void main(String[] args) {
-        CardSource cardSource=CardSource.NX_CARD;
+        CardSource cardSource = CardSource.NX_CARD;
         final Set<CardPair<String, String>> unCheckedCards = ExchangeCardHelper.create(10, cardSource);
-        final Set<String> unCheckedCardNumbers = unCheckedCards.stream().map((CardPair::getLeft)).collect(Collectors.toSet());
-        Set<CardPair<String, String>> effectiveCards = createEffectiveCard(unCheckedCardNumbers, 10, cardSource, unCheckedCards, Sets.newHashSetWithExpectedSize(10));
+        Set<CardPair<String, String>> effectiveCards = createEffectiveCard(10, cardSource, unCheckedCards, Sets.newHashSetWithExpectedSize(10));
         //TODO 将effectiveCards 进行入库
     }
 }
+
 //entity
 class ExchangeCard {
 

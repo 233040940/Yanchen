@@ -42,6 +42,7 @@ public class MenuController {
     }
     @GetMapping(value = "/findMenus")
     public ResultResponse findAll(Integer page,Integer limit,Menu menu){
+
         Page<Menu> page1 = menuService.getPage(menu.getUrl(), menu.getNote(), menu.getParentID(), menu.getOperationSource(),menu.getMenuSource(), page - 1, limit);
         return ResultResponse.builder().code(0).count(page1.getTotalElements()).data(page1.getContent()).build();
     }

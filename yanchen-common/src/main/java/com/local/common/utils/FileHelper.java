@@ -84,6 +84,14 @@ public class FileHelper {
         return FileHelper.class.getResource("/").getPath();
     }
 
+    public static InputStream openInputStreamWithRelativePath(String fileName) throws IOException {
+        return openInputStreamWithAbsPath(relativePath(),fileName);
+    }
+
+    public static InputStream openInputStreamWithAbsPath(String path,String fileName) throws IOException {
+        return FileUtils.openInputStream(new File(path,fileName));
+    }
+
     /**
      * @return boolean
      * @Description 写文件
@@ -243,7 +251,6 @@ public class FileHelper {
             byte[] buffer = new byte[1024];
             int temp;
             while ((temp = is.read(buffer)) != -1) {
-
                 os.write(buffer, 0, temp);
             }
             response.setContentType("multipart/form-data");

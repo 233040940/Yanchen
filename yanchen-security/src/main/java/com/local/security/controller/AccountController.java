@@ -1,6 +1,7 @@
 package com.local.security.controller;
 
 import com.local.common.entity.ResultResponse;
+import com.local.common.enums.ResponseCode;
 import com.local.common.enums.ResponseStatus;
 import com.local.common.id.CustomIDGenerator;
 import com.local.common.utils.JwtProvider;
@@ -22,7 +23,7 @@ public class AccountController {
 
     private final AccountService accountService;
     private final GoodsOrderService orderService;
-    private final CustomIDGenerator customIDGenerator;
+    private final CustomIDGenerator<Long> customIDGenerator;
 
 //    private final BCryptPasswordEncoder passwordEncoder;
 
@@ -34,11 +35,11 @@ public class AccountController {
     }
 
     //
-//    @PostMapping
-//    public ResultResponse addUser(@RequestBody Account account) {
-//        accountService.save(account);
-//        return ResultResponse.builder().code(ResponseCode.POST.getCode()).status(ResponseStatus.SUCCESS).build();
-//    }
+    @PostMapping
+    public ResultResponse addUser(@RequestBody Account account) throws InterruptedException {
+                    accountService.save(account);
+        return ResultResponse.builder().code(ResponseCode.POST.getCode()).status(ResponseStatus.SUCCESS).build();
+    }
 //    @PutMapping
 //    public ResultResponse updateUser(@RequestBody Account account){
 //        accountService.save(account);
@@ -47,7 +48,7 @@ public class AccountController {
 //
 //    @GetMapping
 //    public ResultResponse findAll(Integer offset,Integer limit){
-//        Page<Account> all = accountService.findAll(PageRequest.of(offset-1,limit));
+//        Page<Account> all = accountService.findAll(PageRequest.of(offset-1,limit, Sort.Direction.DESC,"createTimeStamp"));
 //        return ResultResponse.builder().code(200).status(ResponseStatus.SUCCESS).data(all.getContent()).count(all.getTotalElements()).build();
 //    }
 

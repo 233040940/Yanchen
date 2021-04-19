@@ -1,7 +1,7 @@
 let checked;
 let checkData;
 $(function () {
-    const url ="/findMenus";
+    const url ="/findAllMenus";
     table.render({
         elem: '#menus',
         url: url,

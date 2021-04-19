@@ -8,14 +8,18 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="yanchen-netty-server" />
+        <module name="yanchen-data-common" />
         <module name="yanchen-common" />
         <module name="yanchen-security" />
+        <module name="spring-batch-demo" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="spring-batch-demo" options="-parameters" />
       <module name="yanchen-common" options="-parameters" />
+      <module name="yanchen-data-common" options="-parameters" />
       <module name="yanchen-netty-server" options="-parameters" />
       <module name="yanchen-security" options="-parameters" />
     </option>

@@ -1,11 +1,8 @@
 package com.local.common.office.excel;
 
-import com.google.common.collect.Lists;
-import com.local.common.office.excel.entity.Dept;
+import com.local.common.utils.DateTimeHelper;
 
 import java.io.IOException;
-import java.util.Date;
-import java.util.List;
 
 /**
  * @author yc
@@ -17,17 +14,17 @@ public class Test {
 
 
     public static void main(String[] args) throws IllegalAccessException, NoSuchFieldException, IOException {
-        ExcelProvider<Dept> excelProvider = new SimplePoiProvider();
-        String path = "/Users/yanchen/IdeaProjects/yanchen/common/src/main/java/com/local/common/office/excel";
-        String excelName = "部门工资表";
-        String sheetName = "IT部";
-        List<Dept> depts = Lists.newArrayList();
-       for (int i = 0; i <13333; i++) {
-           depts.add(new Dept("yanchen","四川成都",10086,10000.2,new Date()));
-       }
-         depts.add(new Dept("李四","西安",10010,7000,new Date()));
-       boolean write = excelProvider.write(path, excelName, sheetName, Dept.class, ExcelProvider.ExcelSuffix.XLSX, depts);
-       System.out.println(write);
+//        ExcelProvider<Dept> excelProvider = new SimplePoiProvider();
+//        String path = "/Users/yanchen/IdeaProjects/yanchen/common/src/main/java/com/local/common/office/excel";
+//        String excelName = "部门工资表";
+//        String sheetName = "IT部";
+//        List<Dept> depts = Lists.newArrayList();
+//       for (int i = 0; i <13333; i++) {
+//           depts.add(new Dept("yanchen","四川成都",10086,10000.2,new Date()));
+//       }
+//         depts.add(new Dept("李四","西安",10010,7000,new Date()));
+//       boolean write = excelProvider.write(path, excelName, sheetName, Dept.class, ExcelProvider.ExcelSuffix.XLSX, depts);
+//       System.out.println(write);
 //        Collection<Dept> read = excelHelper.read(path, excelName, sheetName, Dept.class, ExcelSuffix.XLSX);
 //        int size = read.size();
 //        System.out.println(size);

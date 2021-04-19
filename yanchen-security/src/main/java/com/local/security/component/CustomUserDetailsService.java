@@ -69,7 +69,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         userDetail.setAuthorities(authorities);
         userDetail.setPassword(account.getPassword());
         //TODO 未添加锁定账号功能
-        userDetail.setNonLocked(!loadUserLockedInfo(account.getId()));
+        userDetail.setNonLocked(!loadUserLockedInfo(account.getId().intValue()));
         return userDetail;
     }
     /**

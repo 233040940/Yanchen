@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>菜单管理</title>
+    <link rel="stylesheet" type="text/css" href="js/layui/css/layui.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.cookie.js"></script>
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-card-header">
+            <div class="layui-row">
+                <div class="layui-col-lg12">
+                    <div class="layui-card">
+                        <div class="layui-card-header">
+                            <div class="layui-row">
+                                <div class="layui-col-lg1">
+                                    <div class="layui-inline">
+                                        <button type="button" class="layui-btn layui-btn-radius layui-btn-sm"
+                                                onclick="click_add_menu(0)"><i class=" layui-icon layui-icon-add-1 "></i>新增导航菜单
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="layui-col-lg-offset10">
+                                    <div class="layui-btn-group" style="padding-left: 30px;">
+                                        <button type="button" class="layui-btn layui-btn-radius layui-btn-sm"
+                                                onclick="click_add_menu(1)"><i
+                                                class=" layui-icon layui-icon-add-1 "></i>新增操作菜单
+                                        </button>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div style="display: none" id="NxcreditTradeRecord_div">
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    查询条件
+                </div>
+                <div class="layui-card-body">
+                    <div class="layui-table" id="NxcreditTradeRecords" lay-filter="NxcreditTradeRecords">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="display: none" id="MpointTradeRecord_div">
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    查询条件
+                </div>
+                <div class="layui-card-body">
+                    <div class="layui-table" id="MpointTradeRecords" lay-filter="MpointTradeRecords">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="display: none" id="MesoTradeRecord_div">
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    查询条件
+                </div>
+                <div class="layui-card-body">
+                    <div class="layui-table" id="MesoTradeRecords" lay-filter="MesoTradeRecords">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="display: none" id="character_package_div">
+            <div class="layui-card">
+                <div class="layui-card-header">
+                    查询条件
+                </div>
+                <div class="layui-card-body">
+                    <div class="layui-table" id="character_package" lay-filter="character_package">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="display: none" id="more_detail_div">
+        <form class="layui-form">
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <input type="radio" name="detail" value="抵用卷记录" title="抵用卷记录">
+                    <input type="radio" name="detail" value="点卷记录" title="点卷记录">
+                    <input type="radio" name="detail" value="金币记录" title="金币记录">
+                    <input type="radio" name="detail" value="角色背包" title="角色背包">
+                </div>
+            </div>
+        </form>
+        </div>
+        <div class="layui-card-body" >
+            <div class="layui-table" id="menus" lay-filter="menus">
+            </div>
+            <script type="text/html" id="barDemo">
+                <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">更多详情</a>
+                <!--                <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>-->
+                <!--                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>-->
+            </script>
+        </div>
+
+        <div style="display: none" id="hide_click_add_nav_menu_div">
+            <form class="layui-form" >
+                <div class="layui-form-item">
+                    <label class="layui-form-label">URL:</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="nav_menu_url" required  lay-verify="required" placeholder="形如:/index,/permission ..." autocomplete="off" class="layui-input" value="">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">名称:</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="nav_menu_name" required  lay-verify="required" placeholder="形如:首页,权限管理 ..." autocomplete="off" class="layui-input" value="">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">描述:</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="nav_menu_note" required  lay-verify="required" placeholder="..." autocomplete="off" class="layui-input" value="">
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div style="display: none" id="hide_click_add_operation_menu_div">
+            <form class="layui-form" >
+                <div class="layui-form-item">
+                    <label class="layui-form-label">URL:</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="operation_menu_url" required  lay-verify="required" placeholder="形如:/editAgentConfig,/deleteAgentConfig ..." autocomplete="off" class="layui-input" value="">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">名称:</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="operation_menu_name" required  lay-verify="required" placeholder="形如:添加代理返现配置，删除代理返现配置 ..." autocomplete="off" class="layui-input" value="">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">操作类型:</label>
+                    <div class="layui-input-block">
+                        <select name="select_operation_type"  id="select_operation_type" lay-verify="select_operation_type">
+                            <option value="">请选择操作类型</option>
+                            <option value="INSERT">新增</option>
+                            <option value="DELETE">删除</option>
+                            <option value="UPDATE">修改</option>
+                            <option value="SELECT">查询</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label">描述:</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="operation_menu_note" required  lay-verify="required" placeholder="..." autocomplete="off" class="layui-input" value="">
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="layui-footer">
+    <!-- 底部固定区域 -->
+
+</div>
+<script src="js/layui/layui.all.js"></script>
+<script src="js/common.js"></script>
+<script src="js/menu.js"></script>
+
+</body>
+</html>

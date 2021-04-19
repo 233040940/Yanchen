@@ -9,10 +9,13 @@
 /Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/component/CustomAuthenticationSuccessHandler.java
 /Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/service/GoodsOrderService.java
 /Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/config/SecurityConfig.java
+/Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/TestVO.java
 /Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/service/SysUserRoleService.java
 /Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/service/RoleService.java
+/Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/util/ExchangeCardHelper.java
 /Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/entity/MataEntity.java
 /Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/common/GlobalExceptionHandler.java
+/Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/entity/StudentDetail.java
 /Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/entity/Account.java
 /Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/component/CustomPermissionChecker.java
 /Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/controller/MenuController.java
@@ -23,13 +26,16 @@
 /Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/component/CustomUserNamePasswordAuthenticationFilter.java
 /Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/repository/MenuRepository.java
 /Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/entity/GoodsOrder.java
+/Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/entity/Teacher.java
 /Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/entity/SysUserRole.java
 /Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/service/impl/MenuServiceImpl.java
 /Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/component/JwtAuthenticationFilter.java
 /Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/service/impl/RoleServiceImpl.java
 /Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/service/impl/GoodsOrderServiceImpl.java
 /Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/service/AccountDetailService.java
+/Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/controller/TestController.java
 /Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/controller/PermissionController.java
+/Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/repository/StudentDetailRepository.java
 /Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/entity/Menu.java
 /Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/entity/AccountDetail.java
 /Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/component/CustomAccessDeniedHandler.java
@@ -38,7 +44,10 @@
 /Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/controller/Test.java
 /Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/entity/dto/LoginDTO.java
 /Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/component/CustomAuthenticationFailureHandler.java
+/Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/repository/StudentRepository.java
 /Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/config/CustomConfig.java
+/Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/repository/TeacherRepository.java
+/Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/entity/Student.java
 /Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/component/PermissionFilter.java
 /Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/entity/dto/PermissionConfigDTO.java
 /Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/entity/vo/AccountOrderVO.java
@@ -55,4 +64,5 @@
 /Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/SecurityApplication.java
 /Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/repository/RoleRepository.java
 /Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/enums/MenuSource.java
+/Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/util/Test.java
 /Users/yanchen/IdeaProjects/yanchen/yanchen-security/src/main/java/com/local/security/component/CustomUserDetail.java
