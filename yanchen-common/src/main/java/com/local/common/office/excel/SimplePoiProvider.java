@@ -64,18 +64,20 @@ public class SimplePoiProvider<T extends ExcelTemplate> extends PoiExcelProvider
                 Sheet sheet = workBook.getSheet(sheetName);
                 if (CustomValidator.checkObjectNotNull(sheet)) {
                     List<Triple<Field, Integer, ? extends Class<?>>> triples = ExcelHelper.templateFieldOrderTypeTriples(fields);
-                    final int defaultOrder = 1;
-                    List<T> excelEntities = Lists.newArrayListWithCapacity(sheet.getLastRowNum());
-                    for (int i = 1; i <= sheet.getLastRowNum(); i++) {
-                        Row row = sheet.getRow(i);
-                        T t = excelTemplate.newInstance();
-                        for (Triple<Field, Integer, ? extends Class<?>> triple : triples) {
-                            Cell cell = row.getCell(triple.getMiddle() - defaultOrder);
-                            setExcelTemplateFieldValue(t, cell, triple.getLeft(), triple.getRight());
+                    if(CustomValidator.checkCollectionNotEmpty(triples)){
+                        final int defaultOrder = 1;
+                        List<T> excelEntities = Lists.newArrayListWithCapacity(sheet.getLastRowNum());
+                        for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+                            Row row = sheet.getRow(i);
+                            T t = excelTemplate.newInstance();
+                            for (Triple<Field, Integer, ? extends Class<?>> triple : triples) {
+                                Cell cell = row.getCell(triple.getMiddle() - defaultOrder);
+                                setExcelTemplateFieldValue(t, cell, triple.getLeft(), triple.getRight());
+                            }
+                            excelEntities.add(t);
                         }
-                        excelEntities.add(t);
+                        return excelEntities;
                     }
-                    return excelEntities;
                 }
             } catch (IOException | InstantiationException | IllegalAccessException e) {
                 e.printStackTrace();
